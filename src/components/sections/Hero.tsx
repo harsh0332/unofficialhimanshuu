@@ -7,6 +7,7 @@ import Button from "../ui/Button";
 import { Play } from "lucide-react";
 import RotatingWord from "../ui/RotatingWord";
 import CountUp from "../ui/CountUp";
+import StudioBackground from "../ui/StudioBackground";
 
 interface JourneyBeat {
   id: number;
@@ -108,11 +109,8 @@ export default function Hero() {
       {/* Cinematic Vignette Overlay */}
       <div className="absolute inset-0 cinematic-vignette z-10" />
 
-      {/* Ember Spotlight Radial Glow Background Bloom */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-brand-ember-glow rounded-full blur-[130px] pointer-events-none animate-pulse-glow z-0" />
-
-      {/* Subtle grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.012] pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] z-0" />
+      {/* Cinematic Studio B-Roll Code-Generated Background (lights, particles, waveforms, grain) */}
+      <StudioBackground />
 
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

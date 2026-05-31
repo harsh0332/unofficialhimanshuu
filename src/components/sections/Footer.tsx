@@ -65,37 +65,37 @@ export default function Footer() {
           </nav>
 
           {/* Contact Details & Social Handles */}
-          <div className="flex flex-col items-center md:items-end gap-3">
+          <div className="flex flex-col items-center md:items-end gap-2 w-full max-w-xs md:max-w-none">
             <a
               href="mailto:work.unofficialhimanshu@gmail.com"
-              className="inline-flex items-center gap-2 font-fraunces font-bold text-xxs md:text-xs uppercase tracking-wider text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
+              className="inline-flex items-center gap-2 font-inter font-bold text-[10px] sm:text-xs text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
             >
-              <Mail size={14} className="text-brand-ember" />
-              <span>work.unofficialhimanshu@gmail.com</span>
+              <Mail size={14} className="text-brand-ember shrink-0" />
+              <span className="lowercase">work.unofficialhimanshu@gmail.com</span>
             </a>
 
             {/* Social Icons Strip */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 text-xxs font-mono uppercase tracking-widest text-brand-bone-secondary">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xxs font-mono uppercase tracking-widest text-brand-bone-secondary w-full justify-center sm:justify-end">
               <a
                 href="https://instagram.com/unofficialhimanshu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
+                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
                 aria-label="Himanshu Soni Instagram"
               >
-                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember" />
-                <span>@unofficialhimanshu</span>
+                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
+                <span className="lowercase">@unofficialhimanshu</span>
               </a>
               <span className="hidden sm:inline-block text-white/5">|</span>
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
+                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
                 aria-label="The Unofficial Studios Instagram"
               >
-                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember" />
-                <span>@the_unofficial_studios</span>
+                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
+                <span className="lowercase">@the_unofficial_studios</span>
               </a>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function Footer() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 bg-brand-ember hover:bg-brand-ember-deep text-brand-ink p-3.5 md:p-4 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(226,73,46,0.3)] hover:shadow-[0_4px_30px_rgba(226,73,46,0.5)] transition-all duration-300 hover:scale-105 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+        className="fixed bottom-6 md:bottom-8 right-6 md:right-8 z-50 bg-brand-ember hover:bg-brand-ember-deep text-brand-ink p-3.5 md:p-4 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(226,73,46,0.3)] hover:shadow-[0_4px_30px_rgba(226,73,46,0.5)] transition-all duration-300 hover:scale-105 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
         aria-label="Chat with us on WhatsApp"
         style={{ minWidth: "48px", minHeight: "48px" }}
       >

@@ -119,8 +119,11 @@ export default function InstagramReels() {
               className="group relative bg-brand-surface border border-brand-border-hairline overflow-hidden flex flex-col h-full hover:border-brand-ember/40 transition-colors duration-500"
             >
               {/* Image Cover Block / Hover MP4 Video */}
-              <div
-                className="relative aspect-[9/16] w-full overflow-hidden bg-brand-card cursor-pointer"
+              <a
+                href={reel.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block aspect-[9/16] w-full overflow-hidden bg-brand-card cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember"
                 onMouseEnter={() => setHoveredReelId(reel.id)}
                 onMouseLeave={() => setHoveredReelId(null)}
               >
@@ -142,7 +145,7 @@ export default function InstagramReels() {
                         src={reel.thumbnail}
                         alt={`Instagram Reel Cover: ${reel.title}`}
                         fill
-                        sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />
@@ -151,8 +154,12 @@ export default function InstagramReels() {
                     {/* Dark Vignette and Hover Action Node */}
                     <div className="absolute inset-0 bg-brand-ink/40 group-hover:bg-brand-ink/65 transition-all duration-500 flex items-center justify-center z-10">
                       <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        className="w-12 h-12 flex items-center justify-center rounded-full bg-brand-ember text-brand-ink opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-350 cursor-pointer"
+                        whileHover={isMobile ? {} : { scale: 1.1 }}
+                        className={`w-12 h-12 flex items-center justify-center rounded-full bg-brand-ember text-brand-ink transition-all duration-350 cursor-pointer ${
+                          isMobile
+                            ? "opacity-90 scale-100"
+                            : "opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
+                        }`}
                       >
                         <Play size={18} className="fill-current text-brand-ink ml-0.5" />
                       </motion.div>
@@ -160,8 +167,8 @@ export default function InstagramReels() {
                   </>
                 )}
 
-                {/* Live Flag / Tag Overlays */}
-                <div className="absolute top-4 left-4 z-20 bg-brand-ink/90 border border-brand-border-accent px-2 py-1 flex items-center gap-1.5 pointer-events-none">
+                {/* Live Flag / Tag Overlays - HIDE ON MOBILE */}
+                <div className="absolute top-4 left-4 z-20 bg-brand-ink/90 border border-brand-border-accent px-2 py-1 md:flex hidden items-center gap-1.5 pointer-events-none">
                   <Code size={10} className="text-brand-ember shrink-0" />
                   <span className="font-inter text-[8px] text-brand-bone font-bold uppercase tracking-widest leading-none">
                     {hoveredReelId === reel.id && !shouldReduceMotion ? "PLAYING LOCAL CLIP" : "INSTA HOVER LIVE"}
@@ -178,7 +185,7 @@ export default function InstagramReels() {
                 <span className="absolute top-4 right-4 z-20 bg-brand-ember px-2.5 py-1 text-[10px] font-inter font-bold uppercase tracking-wider text-brand-ink">
                   {reel.topic}
                 </span>
-              </div>
+              </a>
 
               {/* Reel Text & Actions Block */}
               <div className="p-6 flex flex-col flex-1 justify-between gap-6 text-left">
@@ -198,8 +205,12 @@ export default function InstagramReels() {
 
                 {/* Simulated interactive help box */}
                 <div className="bg-brand-ink border border-brand-border-hairline p-3 font-mono text-[9px] text-brand-bone-secondary select-none">
-                  <span className="text-brand-bone-muted block mb-1">// Interactive Action:</span>
-                  <span className="block mt-0.5 text-brand-ember/90">{reel.captionHint}</span>
+                  <span className="text-brand-bone-muted block mb-1">
+                    {isMobile ? "// Touch Action:" : "// Interactive Action:"}
+                  </span>
+                  <span className="block mt-0.5 text-brand-ember/90">
+                    {isMobile ? "Tap card to watch full Reel on Instagram" : reel.captionHint}
+                  </span>
                 </div>
 
                 {/* Dedicated Instagram Redirect Action Button */}

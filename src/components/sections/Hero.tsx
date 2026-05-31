@@ -267,7 +267,7 @@ export default function Hero() {
                   src="/himanshu.jpg"
                   alt="Himanshu Soni Portrait"
                   fill
-                  sizes="(max-w-768px) 100vw, 400px"
+                  sizes="(max-width: 768px) 100vw, 400px"
                   priority
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
                 />

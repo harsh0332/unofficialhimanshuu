@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-brand-obsidian: #0B0B0D;
+  --color-brand-surface: #141417;
+  --color-brand-card: #1A1A1E;
+  --color-brand-gold: #C9A86A;
+  --color-brand-gold-deep: #A98847;
+  --color-brand-gold-glow: rgba(201,168,106,0.22);
+  --color-brand-ivory: #F4F1EA;
+  --color-brand-muted: #B5B0A6;
+  --color-brand-muted-grey: #6E6A62;
+  --color-brand-border: rgba(255,255,255,0.07);
+  --color-brand-border-accent: rgba(201,168,106,0.18);
+  
+  --font-fraunces: var(--font-fraunces), serif;
+  --font-inter: var(--font-inter), sans-serif;
+  
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.1); }
   }
 }
 
-body {
-  background: var(--background);
+/* Custom CSS Base & Scrollbar Rules */
+:root {
+  --background: #0B0B0D;
+  --foreground: #F4F1EA;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for Cinematic Premium Vibe */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0B0D;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A1A1E;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A86A;
+}
+
+/* Cinematic Effects */
+.radial-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(201, 168, 106, 0.12) 0%, transparent 60%);
+}
+
+.cinematic-vignette {
+  background: radial-gradient(circle, transparent 20%, rgba(11,11,13,0.9) 100%);
+  pointer-events: none;
+}
+
+.text-stroke-outline {
+  -webkit-text-stroke: 1px rgba(244, 241, 234, 0.15);
+  color: transparent;
+}
+
+.text-stroke-outline:hover {
+  -webkit-text-stroke: 1px #C9A86A;
+}
+
+/* Focus and accessibility styles */
+*:focus-visible {
+  outline: 2px solid #C9A86A;
+  outline-offset: 2px;
 }

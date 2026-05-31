@@ -219,17 +219,20 @@ export default function Guest() {
           {/* Right Column: Pitch */}
           <div className="lg:col-span-5 flex flex-col gap-6 text-left order-1 lg:order-2">
             <span className="font-inter font-bold text-xs uppercase tracking-widest text-brand-ember">
-              // Guest Proposals
+              // Guest Curations
             </span>
             <h2 className="font-fraunces font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-brand-bone">
               STEP INTO <br />
               THE SPOTLIGHT
             </h2>
             <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
-              We host industry leaders, disruptive builders, and raw creative powerhouses. If you have built something remarkable, overcome massive barriers, or possess specialized expertise that the world needs to hear, we want you on our set.
+              We don't do promotional puff pieces or scripted PR runs. Our show belongs to the builders who have gotten their hands dirty—the ones who have scaled companies, challenged traditional medical systems, built thriving community spaces, or disrupted industries. 
             </p>
-            <p className="font-inter text-xs text-brand-bone-secondary leading-relaxed">
-              *Note: We record high-end, multi-cam physical episodes in our premium studio. Remote options are available for selected international guests.*
+            <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
+              If your journey carries the scars of real struggle and the insights of genuine success, Himanshu Soni's team wants to hear from you. Let's document your legacy with the premium, broadcast-grade production it deserves.
+            </p>
+            <p className="font-inter text-xs text-brand-bone-secondary leading-relaxed border-t border-brand-border-hairline pt-4">
+              *Note: Physical recordings are held in our state-of-the-art Indore studio, providing a cinematic look. Specialized remote feeds can be configured for international builders.*
             </p>
           </div>
 

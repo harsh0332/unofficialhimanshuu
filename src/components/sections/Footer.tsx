@@ -18,7 +18,7 @@ export default function Footer() {
   // WhatsApp click-to-chat environment variable fallback
   const whatsappUrl =
     process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-    "https://wa.me/919999999999?text=Hi%20The%20Unofficial%20Studios,%20I'd%20like%20to%20collaborate!";
+    "https://wa.me/918827736537?text=Hi%20The%20Unofficial%20Studios,%20I'd%20like%20to%20collaborate!";
 
   const footerLinks = [
     { name: "About", href: "#hero" },

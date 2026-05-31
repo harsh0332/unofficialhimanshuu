@@ -100,21 +100,25 @@ export default function Brands() {
               COLLABORATIONS
             </h2>
             <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
-              Accelerate your brand's presence in central India and beyond. Align your message with our premium audience of founders, high-earners, and tech decision-makers.
+              Standard banner placements and robotic mid-rolls don't work anymore; audiences tune them out. We believe brand alignment should be as natural and engaging as the podcast itself. By integrating your product organically into our stories, we create memorable, high-converting digital assets that resonate with Central India's most ambitious demographic: founders, high-earning decision-makers, and high-agency creators.
             </p>
 
-            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary">
+            <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed mt-2">
+              Whether leveraging Hasselblad's rich aesthetics or OPPO's premium mobile sensors, we build custom visual hooks that highlight your brand's core values—not just its features.
+            </p>
+
+            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary border-t border-brand-border-hairline pt-6">
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Native Audio/Video Sponsorship</strong>: High-converting founder integrations.</span>
+                <span><strong className="font-bold text-brand-bone">Bespoke Integrations</strong>: Native segments seamlessly woven into deep founder conversations.</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Vertical Asset Takeover</strong>: Custom reels engineered for massive reach.</span>
+                <span><strong className="font-bold text-brand-bone">Vertical Asset Engine</strong>: High-octane reels engineered specifically for viral creator reach.</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Full Product Showcase</strong>: Bespoke episodes dedicated to your tech.</span>
+                <span><strong className="font-bold text-brand-bone">Exclusive Co-Branding</strong>: Elevating your brand's authority alongside Himanshu Soni's verified footprint.</span>
               </li>
             </ul>
           </div>

@@ -112,8 +112,8 @@ export default function Talks() {
               Celebrity Dialogues, Real Stories, and Unfiltered Insights.
             </p>
           </div>
-          <p className="max-w-md font-inter text-sm text-brand-bone-secondary leading-relaxed text-left">
-            Our signature podcast where Himanshu Soni sits down with industry giants, builders, and elite creators to explore what goes on behind their public feeds.
+          <p className="max-w-xl font-inter text-sm text-brand-bone-secondary leading-relaxed text-left">
+            Our signature podcast, "The Unofficial Talks," isn't just about view-counts. It is Indore's most honest hot seat. We sit down with leaders, medical experts, tech founders, and community builders to extract the raw, unscripted truths that other media outlets edit out. We dissect real challenges, celebrate genuine grit, and build a lasting archive of Central India's intellectual landscape.
           </p>
         </div>
 

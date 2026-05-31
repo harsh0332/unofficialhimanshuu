@@ -100,21 +100,25 @@ export default function BookStudio() {
               ELITE SET
             </h2>
             <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
-              Elevate your podcasts, high-contrast interviews, and commercial visual projects. Rent out our fully acoustically treated media space featuring state-of-the-art 4K multicar cameras, Shure broadcasting microphones, and high-end cinematic setups.
+              Great content demands an environment that honors it. Our physical production HQ in Indore is designed as a creative sanctuary. It is an acoustically isolated, beautifully lit space calibrated for the modern creator economy. Equipped with state-of-the-art multi-camera 4K setups, high-fidelity broadcasting audio capture, and customizable high-contrast editorial backdrops, we provide the exact technical backbone you need to make your production look and sound like a world-class broadcast.
             </p>
 
-            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary">
+            <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed mt-2">
+              Don't compromise on audio reflections or flat lighting. Lock in a slot to experience premium, worry-free media engineering under the supervision of our dedicated technical staff.
+            </p>
+
+            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary border-t border-brand-border-hairline pt-6">
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Broadcast Quality</strong>: Multi-camera 4K recording capabilities.</span>
+                <span><strong className="font-bold text-brand-bone">Acoustic Sanctuary</strong>: Zero external echo and premium sound-absorbent walls for pristine dialogue.</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Acoustic Treat</strong>: High-end insulation for perfect audio capture.</span>
+                <span><strong className="font-bold text-brand-bone">Cinema Grade Sets</strong>: Custom depth-of-field lighting arrangements and 4K Blackmagic setups.</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Pro Staff</strong>: Technical engineer on site for full session support.</span>
+                <span><strong className="font-bold text-brand-bone">Engineer Support</strong>: Dedicated sound and video engineer on site for full session operations.</span>
               </li>
             </ul>
           </div>

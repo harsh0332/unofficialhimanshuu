@@ -208,21 +208,25 @@ export default function EventBooking() {
               EVENT COVERAGE
             </h2>
             <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
-              Translate your large scale gatherings, corporate product reveals, or live showcases into epic digital assets. We deploy professional cinematography crews, stabilizing rigs, and high-fidelity sound captures to make your event look expensive.
+              Events are fleeting, but their digital legacy shouldn't be. Whether hosting a large-scale tech summit, a corporate launch, or a D2C showcase in Indore, your event deserves to look expensive and authoritative on screen. We don't just shoot "recap videos"—we document the emotional core, the design details, and the key highlights using high-contrast, editorial cinematography.
             </p>
 
-            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary">
+            <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed mt-2">
+              From stabilized gimbal camera sweeps capturing scale to high-fidelity audio systems grabbing pristine soundbites, we compile assets that continue converting long after the lights go down.
+            </p>
+
+            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary border-t border-brand-border-hairline pt-6">
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Same-Day Recaps</strong>: Dynamic vertical video cuts produced on site.</span>
+                <span><strong className="font-bold text-brand-bone">Express Stinger Reels</strong>: Dynamic, highly shareable vertical content produced on-site for immediate digital deployment.</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Multi-Angle Coverage</strong>: High-end stabilised camera sweeps.</span>
+                <span><strong className="font-bold text-brand-bone">Cinematic Multicamera</strong>: Multiple angles of stabilization rigs, drone dynamics, and focal lens separations.</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
-                <span><strong className="font-bold text-brand-bone">Brand Integrations</strong>: Connecting event assets with creator reach.</span>
+                <span><strong className="font-bold text-brand-bone">Sponsor Amplification</strong>: Custom capture plans focused on highlighting event partner placements.</span>
               </li>
             </ul>
           </div>

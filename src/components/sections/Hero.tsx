@@ -116,9 +116,14 @@ export default function Hero() {
             {/* Tagline Narrative paragraph */}
             <motion.p
               variants={textVariants}
-              className="max-w-[55ch] font-inter text-sm sm:text-base text-brand-bone-secondary leading-relaxed"
+              className="max-w-[58ch] font-inter text-sm sm:text-base text-brand-bone-secondary leading-relaxed space-y-4 text-left"
             >
-              Founder of <strong className="font-bold text-brand-bone">The Unofficial Studios</strong> Indore. We translate raw celebrity narratives, scaled brand campaigns, and high-impact podcast sessions into premium broadcast-grade assets that command absolute authority.
+              <span className="block">
+                Indore is the beating heart of India's digital creator surge, but in a sea of templated video packages and repetitive feeds, real connection got lost. Himanshu Soni built <strong className="font-bold text-brand-bone">The Unofficial Studios</strong> on a simple, uncompromising ethos: refusing fake scripts and bringing absolute authenticity back. 
+              </span>
+              <span className="block mt-3 text-brand-bone-secondary">
+                With a verified community of over <strong className="font-bold text-brand-bone">208,000 engaged minds</strong>, Himanshu understands that a story isn't just about high-end camera bodies—it is about the human pulse. By fusing top-tier broadcast engineering with raw, unfiltered storytelling intuition, we produce Indore's premier visual media. From multi-cam high-contrast corporate narratives to our flagship show, <strong className="font-bold text-brand-bone">"The Unofficial Talks"</strong>, we don't just shoot pixels; we capture moments that define modern digital culture.
+              </span>
             </motion.p>
 
             {/* CTAs */}

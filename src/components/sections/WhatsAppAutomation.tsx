@@ -7,7 +7,7 @@ import Button from "../ui/Button";
 export default function WhatsAppAutomation() {
   const whatsappUrl =
     process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-    "https://wa.me/919999999999?text=Hi%20The%20Unofficial%20Studios,%20I'd%20like%20to%20collaborate!";
+    "https://wa.me/918827736537?text=Hi%20The%20Unofficial%20Studios,%20I'd%20like%20to%20collaborate!";
 
   return (
     <section
@@ -25,25 +25,25 @@ export default function WhatsAppAutomation() {
             <div className="inline-flex items-center gap-2 border border-brand-ember/30 bg-brand-ember/5 px-4 py-1.5 rounded-none w-fit">
               <Sparkles size={10} className="text-brand-ember animate-pulse" />
               <span className="font-inter font-bold text-[9px] uppercase tracking-widest text-brand-ember">
-                Coming Soon — Studio Automations
+                Creator-to-Brand Hotline
               </span>
             </div>
 
             <h2 className="font-fraunces font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-brand-bone leading-tight">
-              INSTANT CHAT-TO-STUDIO <br />
-              AUTOMATION
+              CONNECT INSTANTLY: <br />
+              DIRECT WHATSAPP PIPELINE
             </h2>
             
             <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
-              We are building a highly integrated WhatsApp engine. Soon, instead of scheduling slots manually or copying links, brands and guests will be able to query our studio calendar, request rate cards, and unlock vertical video portfolios instantly in chat.
+              In a fast-moving digital ecosystem, coordination shouldn't be a bottleneck. By launching a direct 1-on-1 pipeline, we bypass the noise of email queues. Whether you are a brand manager requesting an immediate rate card, a potential sponsor exploring audience analytics, or a creator looking to lock down a recording slot, our direct route gets you answers in real-time. We are actively bridging the gap between raw ideation and high-production execution.
             </p>
 
             <div className="bg-brand-surface border border-brand-border-hairline p-5 font-mono text-[10px] text-brand-bone-secondary flex flex-col gap-2">
-              <span className="text-brand-ember font-bold uppercase tracking-wider">// Planned Interactive Triggers</span>
+              <span className="text-brand-ember font-bold uppercase tracking-wider">// Real-Time Creator Workflows</span>
               <div className="flex flex-col gap-1.5 text-brand-bone-muted mt-2">
-                <span>• Text <strong className="text-brand-bone">"PORTFOLIO"</strong>: Unlocks 4K sponsor reels reels.</span>
-                <span>• Text <strong className="text-brand-bone">"BOOK"</strong>: Polls live studio availability.</span>
-                <span>• Text <strong className="text-brand-bone">"GUEST"</strong>: Dispatches host applications.</span>
+                <span>• Instant Response: Connect directly with Himanshu Soni's technical management team.</span>
+                <span>• Zero Friction: Skip the endless coordination loops and get direct booking approvals.</span>
+                <span>• Dynamic Delivery: Receive custom production catalog items directly on your phone.</span>
               </div>
             </div>
 

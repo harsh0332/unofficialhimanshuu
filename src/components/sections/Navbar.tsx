@@ -12,6 +12,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "About", href: "#hero" },
     { name: "Podcast", href: "#podcast" },
+    { name: "Instagram", href: "#instagram" },
     { name: "Apply", href: "#guest" },
     { name: "Sponsor", href: "#sponsor" },
     { name: "Booking", href: "#studio-booking" },

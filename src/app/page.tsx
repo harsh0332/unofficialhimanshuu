@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import Talks from "@/components/sections/Talks";
+import InstagramReels from "@/components/sections/InstagramReels";
 import Guest from "@/components/sections/Guest";
 import Brands from "@/components/sections/Brands";
 import Clients from "@/components/sections/Clients";
@@ -28,6 +29,9 @@ export default function Home() {
 
         {/* 3. Podcast Hub ("The Unofficial Talks" Showcase) */}
         <Talks />
+
+        {/* 3b. Popular Instagram Reels Hub */}
+        <InstagramReels />
 
         {/* 4. Guest Application form -> webhook type: "guest" */}
         <Guest />

@@ -15,7 +15,7 @@ const OppoLogo = (props: React.SVGProps<SVGSVGElement>) => (
 
 const HasselbladLogo = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <text x="10" y="42" font-family="'Fraunces', serif" font-weight="900" font-size="24" fill="currentColor" letterSpacing="1.5">HASSELBLAD</text>
+    <text x="10" y="42" fontFamily="'Fraunces', serif" fontWeight="900" fontSize="24" fill="currentColor" letterSpacing="1.5">HASSELBLAD</text>
   </svg>
 );
 

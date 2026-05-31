@@ -12,6 +12,7 @@ interface ButtonProps {
   className?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  target?: string;
 }
 
 export default function Button({
@@ -22,6 +23,7 @@ export default function Button({
   className = "",
   type = "button",
   disabled = false,
+  target,
 }: ButtonProps) {
   const baseStyle =
     "relative inline-flex items-center justify-center font-inter font-bold uppercase tracking-wider text-[10px] px-6 py-3.5 rounded-none overflow-hidden transition-all duration-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
@@ -52,7 +54,7 @@ export default function Button({
   if (href) {
     return (
       <motion.div {...motionProps} className="inline-block">
-        <Link href={href} className={`${baseStyle} ${variantStyles[variant]} ${className}`}>
+        <Link href={href} target={target} rel={target === "_blank" ? "noopener noreferrer" : undefined} className={`${baseStyle} ${variantStyles[variant]} ${className}`}>
           {buttonContent}
         </Link>
       </motion.div>

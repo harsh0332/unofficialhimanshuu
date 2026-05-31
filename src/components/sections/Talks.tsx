@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Play, Code } from "lucide-react";
 import { motion } from "framer-motion";
@@ -14,70 +14,79 @@ interface Episode {
   thumbnail: string;
   duration: string;
   tag: string;
+  youtubeId: string;
   embedHint: string;
 }
 
 export default function Talks() {
+  const [hoveredEpisodeId, setHoveredEpisodeId] = useState<number | null>(null);
+
   const featuredEpisodes: Episode[] = [
     {
       id: 1,
-      title: "Building a 100 Crore Tech Startup from Central India",
-      guest: "Rajesh Sharma",
-      role: "CEO, Indore Logistics",
-      thumbnail: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=600&h=400&fit=crop",
-      duration: "58 Mins",
-      tag: "Business Mastery",
-      embedHint: "Replace with Instagram Reel / YouTube Embed Iframe",
+      title: "Garbh Sanskar Explained by Dr. Priyanka Vedi | Full Podcast",
+      guest: "Dr. Priyanka Vedi",
+      role: "Ayurveda & Garbh Sanskar Expert",
+      thumbnail: "https://img.youtube.com/vi/eYiMwCQ85Kg/hqdefault.jpg",
+      duration: "55 Mins",
+      tag: "Sciences & Health",
+      youtubeId: "eYiMwCQ85Kg",
+      embedHint: "Hover cursor to preview video live silently in card",
     },
     {
       id: 2,
-      title: "The Ultimate Future of Creator Economy in India",
-      guest: "Ranveer Allahbadia",
-      role: "Digital Broadcaster",
-      thumbnail: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=600&h=400&fit=crop",
-      duration: "74 Mins",
-      tag: "Creator Systems",
-      embedHint: "Replace with Ranveer Allahbadia Episode Embed Iframe",
+      title: "Inside the Mind of a Surgeon | Dr. Rakesh Shivhare Podcast Part 1",
+      guest: "Dr. Rakesh Shivhare",
+      role: "GI & Laparoscopic Surgeon",
+      thumbnail: "https://img.youtube.com/vi/oGiTvl1vv8E/hqdefault.jpg",
+      duration: "48 Mins",
+      tag: "Medical Realities",
+      youtubeId: "oGiTvl1vv8E",
+      embedHint: "Hover cursor to preview video live silently in card",
     },
     {
       id: 3,
-      title: "Behind the Scenes of High-End Cinema & Filmmaking",
-      guest: "Vipin Malhotra",
-      role: "Cinematographer & Director",
-      thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&h=400&fit=crop",
-      duration: "45 Mins",
-      tag: "Cinematics",
-      embedHint: "Replace with Cinema Interview Episode Embed Iframe",
+      title: "Reality of Medical Profession in India | Dr. Rakesh Shivhare Podcast Part 2",
+      guest: "Dr. Rakesh Shivhare",
+      role: "GI & Laparoscopic Surgeon",
+      thumbnail: "https://img.youtube.com/vi/5M0K5Mdlnqo/hqdefault.jpg",
+      duration: "50 Mins",
+      tag: "Medical Ethics",
+      youtubeId: "5M0K5Mdlnqo",
+      embedHint: "Hover cursor to preview video live silently in card",
     },
     {
       id: 4,
-      title: "Scale-up Secrets of D2C Brand Builders",
-      guest: "Aditi Sen",
-      role: "Founder, OrganicSkin",
-      thumbnail: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600&h=400&fit=crop",
-      duration: "52 Mins",
-      tag: "E-Commerce",
-      embedHint: "Replace with D2C Founder Episode Embed Iframe",
+      title: "5G Kyu Slow Lagta Hai? | Lease Line vs Normal Internet",
+      guest: "Aditya Singh Sengar",
+      role: "Co-Founder, Green Wed Solutions",
+      thumbnail: "https://img.youtube.com/vi/usALSHOTDKQ/hqdefault.jpg",
+      duration: "36 Mins",
+      tag: "Tech Infrastructure",
+      youtubeId: "usALSHOTDKQ",
+      embedHint: "Hover cursor to preview video live silently in card",
     },
     {
       id: 5,
-      title: "Indore's Rise as the Cleanest Tech Hub in Asia",
-      guest: "Swapnil Jain",
-      role: "CTO, Indore Syndicate",
-      thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=600&h=400&fit=crop",
-      duration: "61 Mins",
-      tag: "Regional Growth",
-      embedHint: "Replace with Tech Hub Episode Embed Iframe",
+      title: "Nayab Midha Loves Indore Food? Fun Conversation at Sarafa & 56 Dukan",
+      guest: "Nayab Midha",
+      role: "Spoken Word Poet & Artist",
+      thumbnail: "https://img.youtube.com/vi/nYIfXqh8_14/hqdefault.jpg",
+      duration: "25 Mins",
+      tag: "Indore Culture",
+      youtubeId: "nYIfXqh8_14",
+      embedHint: "Hover cursor to preview video live silently in card",
     },
     {
       id: 6,
-      title: "Mastering High-Aesthetic Cinematic Visual Feeds",
-      guest: "Rohan Kapoor",
-      role: "Creative Producer",
-      thumbnail: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=600&h=400&fit=crop",
-      duration: "50 Mins",
-      tag: "Production Aesthetics",
-      embedHint: "Replace with Creative Producer Episode Embed Iframe",
+      title: "NEET UG 2026 Cancelled | Paper Leak Shock | 22 Lakh Students Affected",
+      guest: "Indore Students Community",
+      role: "NEET UG Aspirants",
+      thumbnail: "https://img.youtube.com/vi/v2gzlQSdjHc/hqdefault.jpg",
+      duration: "30 Mins",
+      tag: "Ground Reality",
+      youtubeId: "v2gzlQSdjHc",
+      embedHint: "Hover cursor to preview video live silently in card",
     },
   ];
 
@@ -115,32 +124,47 @@ export default function Talks() {
               key={ep.id}
               className="group relative bg-brand-surface border border-brand-border-hairline overflow-hidden flex flex-col h-full hover:border-brand-ember/40 transition-colors duration-500"
             >
-              {/* Image Thumbnail Block */}
-              <div className="relative aspect-video w-full overflow-hidden bg-brand-card">
-                <Image
-                  src={ep.thumbnail}
-                  alt={`Thumbnail for ${ep.title} with guest ${ep.guest}`}
-                  fill
-                  sizes="(max-w-768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+              {/* Image Thumbnail Block with Hover Trigger to Autoplay */}
+              <div
+                className="relative aspect-video w-full overflow-hidden bg-brand-card cursor-pointer"
+                onMouseEnter={() => setHoveredEpisodeId(ep.id)}
+                onMouseLeave={() => setHoveredEpisodeId(null)}
+              >
+                {hoveredEpisodeId === ep.id ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${ep.youtubeId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&playsinline=1&loop=1&playlist=${ep.youtubeId}`}
+                    title={ep.title}
+                    className="absolute inset-0 w-full h-full border-none z-10 scale-105 transition-transform pointer-events-none"
+                    allow="autoplay; encrypted-media"
+                  />
+                ) : (
+                  <>
+                    <Image
+                      src={ep.thumbnail}
+                      alt={`Thumbnail for ${ep.title} with guest ${ep.guest}`}
+                      fill
+                      sizes="(max-w-768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
 
-                {/* Visual Vignette Overlay */}
-                <div className="absolute inset-0 bg-brand-ink/40 group-hover:bg-brand-ink/65 transition-all duration-500 flex items-center justify-center z-10">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-12 h-12 flex items-center justify-center rounded-full bg-brand-ember text-brand-ink opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-350 cursor-pointer"
-                  >
-                    <Play size={18} className="fill-current text-brand-ink ml-0.5" />
-                  </motion.div>
-                </div>
+                    {/* Visual Vignette Overlay */}
+                    <div className="absolute inset-0 bg-brand-ink/40 group-hover:bg-brand-ink/65 transition-all duration-500 flex items-center justify-center z-10">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-brand-ember text-brand-ink opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-350 cursor-pointer"
+                      >
+                        <Play size={18} className="fill-current text-brand-ink ml-0.5" />
+                      </motion.div>
+                    </div>
+                  </>
+                )}
 
-                {/* EXPLICIT EDITABLE PLACEHOLDER MARKUP FLAG */}
+                {/* EXPLICIT HOVER PLAYER MARKUP FLAG */}
                 <div className="absolute top-3 left-3 z-20 bg-brand-ink/90 border border-brand-border-accent px-2 py-1 flex items-center gap-1.5 pointer-events-none">
                   <Code size={10} className="text-brand-ember shrink-0" />
                   <span className="font-inter text-[8px] text-brand-bone font-bold uppercase tracking-widest leading-none">
-                    EDITABLE EMBED
+                    {hoveredEpisodeId === ep.id ? "PLAYING PREVIEW" : "LIVE HOVER PLAYER"}
                   </span>
                 </div>
 
@@ -166,14 +190,16 @@ export default function Talks() {
                   </h3>
                 </div>
 
-                {/* Code hints detail for code-level visual feedback */}
+                {/* Info detail for hover feedback */}
                 <div className="bg-brand-ink border border-brand-border-hairline p-3 font-mono text-[9px] text-brand-bone-secondary select-none">
-                  <span className="text-brand-bone-muted block mb-1">// Code implementation:</span>
-                  &lt;iframe src="..." /&gt; <span className="block mt-0.5 text-brand-ember/70">{ep.embedHint}</span>
+                  <span className="text-brand-bone-muted block mb-1">// Interactive Action:</span>
+                  <span className="block mt-0.5 text-brand-ember/90">{ep.embedHint}</span>
                 </div>
 
                 <a
-                  href="#contact"
+                  href={`https://www.youtube.com/watch?v=${ep.youtubeId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="font-inter text-xs font-bold uppercase tracking-widest text-brand-bone-secondary hover:text-brand-ember transition-colors duration-300 w-fit underline decoration-brand-ember underline-offset-4 decoration-2"
                 >
                   Watch Episode
@@ -188,7 +214,7 @@ export default function Talks() {
 
         {/* Section watch CTA */}
         <div className="mt-16 text-center">
-          <Button href="https://youtube.com/@unofficialhimanshu" variant="outline" className="px-10">
+          <Button href="https://youtube.com/@theunofficialtalks" target="_blank" variant="outline" className="px-10">
             See All Episodes
           </Button>
         </div>

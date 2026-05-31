@@ -7,7 +7,7 @@ import Button from "../ui/Button";
 import { Play } from "lucide-react";
 import RotatingWord from "../ui/RotatingWord";
 import CountUp from "../ui/CountUp";
-import StudioBackground from "../ui/StudioBackground";
+import HeroVideo from "../ui/HeroVideo";
 
 interface JourneyBeat {
   id: number;
@@ -104,13 +104,10 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center bg-brand-ink overflow-hidden pt-24 md:pt-32 pb-16 z-20 border-b border-brand-border-hairline"
+      className="relative w-full min-h-screen min-h-[100svh] flex items-center justify-center bg-brand-ink overflow-hidden pt-24 md:pt-32 pb-16 z-20 border-b border-brand-border-hairline"
     >
-      {/* Cinematic Vignette Overlay */}
-      <div className="absolute inset-0 cinematic-vignette z-10" />
-
-      {/* Cinematic Studio B-Roll Code-Generated Background (lights, particles, waveforms, grain) */}
-      <StudioBackground />
+      {/* Cinematic Studio B-Roll Video Backdrop */}
+      <HeroVideo />
 
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

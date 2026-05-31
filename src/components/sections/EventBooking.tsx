@@ -7,13 +7,12 @@ import { submitLeadForm } from "@/lib/webhook";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function Guest() {
+export default function EventBooking() {
   const [formData, setFormData] = useState({
     name: "",
-    whatYouDo: "",
-    socialHandle: "",
-    email: "",
-    whyGuest: "",
+    purpose: "",
+    preferredDate: "",
+    contactInfo: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -36,14 +35,10 @@ export default function Guest() {
 
   const validate = (): boolean => {
     const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.whatYouDo.trim()) newErrors.whatYouDo = "This field is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Provide a valid email address";
-    }
-    if (!formData.whyGuest.trim()) newErrors.whyGuest = "Please tell us about your story";
+    if (!formData.name.trim()) newErrors.name = "Your name is required";
+    if (!formData.contactInfo.trim()) newErrors.contactInfo = "Phone or email is required";
+    if (!formData.preferredDate.trim()) newErrors.preferredDate = "Preferred date is required";
+    if (!formData.purpose.trim()) newErrors.purpose = "Event coverage scope is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -57,14 +52,13 @@ export default function Guest() {
 
     const payloadData = {
       name: formData.name,
-      whatYouDo: formData.whatYouDo,
-      socialHandle: formData.socialHandle,
-      email: formData.email,
-      whyGuest: formData.whyGuest,
+      purpose: formData.purpose,
+      preferredDate: formData.preferredDate,
+      contactInfo: formData.contactInfo,
     };
 
-    // Submitting under the exact required formType: "guest"
-    const result = await submitLeadForm("guest", payloadData);
+    // Submitting under the exact required formType: "event-booking"
+    const result = await submitLeadForm("event-booking", payloadData);
 
     if (result.success) {
       setStatus({
@@ -73,27 +67,25 @@ export default function Guest() {
       });
       setFormData({
         name: "",
-        whatYouDo: "",
-        socialHandle: "",
-        email: "",
-        whyGuest: "",
+        purpose: "",
+        preferredDate: "",
+        contactInfo: "",
       });
       setErrors({});
     } else {
       setStatus({
         state: "error",
-        message: result.error || "Failed to transmit application. Please try again.",
+        message: result.error || "Failed to submit event inquiry. Please try again.",
       });
     }
   };
 
   return (
     <section
-      id="guest"
+      id="event-booking"
       className="relative w-full py-24 md:py-32 bg-brand-ink overflow-hidden z-20 border-b border-brand-border-hairline"
     >
-      {/* Background ambient ember highlight on right */}
-      <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-brand-ember-glow rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/4 -right-48 w-96 h-96 bg-brand-ember-glow rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -103,7 +95,7 @@ export default function Guest() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
             
             <h3 className="font-fraunces font-extrabold text-lg md:text-xl uppercase tracking-wider text-brand-bone mb-8 text-left">
-              APPLY AS A GUEST
+              EVENT COVERAGE INQUIRY
             </h3>
 
             <AnimatePresence mode="wait">
@@ -116,10 +108,10 @@ export default function Guest() {
                 >
                   <CheckCircle2 size={48} className="text-brand-ember mb-4" />
                   <h4 className="font-fraunces font-bold text-lg uppercase tracking-wider text-brand-bone mb-2">
-                    Application Received
+                    Inquiry Received
                   </h4>
                   <p className="font-inter text-xs text-brand-bone-secondary max-w-sm">
-                    Awesome! Our editorial team reviews guest proposals weekly. If your background aligns with our upcoming episodes, we'll reach out to schedule a pre-interview.
+                    Perfect! Our event logistics coordinator will check our camera crew availability on your preferred date and reach out to discuss the recap package.
                   </p>
                   {status.message && (
                     <span className="mt-4 px-3 py-1 bg-brand-ink border border-brand-border-hairline text-xxs font-mono text-brand-ember rounded">
@@ -130,7 +122,7 @@ export default function Guest() {
                     onClick={() => setStatus({ state: "idle" })}
                     className="mt-8 font-inter font-bold text-xxs uppercase tracking-widest text-brand-ember hover:text-brand-bone transition-colors duration-300 focus:outline-none"
                   >
-                    Submit Another Application
+                    Submit Another Inquiry
                   </button>
                 </motion.div>
               ) : (
@@ -151,54 +143,44 @@ export default function Guest() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <FormInput
-                      label="Full Name"
+                      label="Your Name"
                       name="name"
-                      placeholder="e.g. Vicky Malhotra"
+                      placeholder="e.g. Aditi Jain"
                       required
                       value={formData.name}
                       onChange={handleChange}
                       error={errors.name}
                     />
                     <FormInput
-                      label="What You Do / Industry"
-                      name="whatYouDo"
-                      placeholder="e.g. Design Architect"
+                      label="Phone / Email Address"
+                      name="contactInfo"
+                      placeholder="name@email.com / +91"
                       required
-                      value={formData.whatYouDo}
+                      value={formData.contactInfo}
                       onChange={handleChange}
-                      error={errors.whatYouDo}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormInput
-                      label="Social Handle (Instagram / LinkedIn)"
-                      name="socialHandle"
-                      placeholder="e.g. @vickymalhotra"
-                      value={formData.socialHandle}
-                      onChange={handleChange}
-                    />
-                    <FormInput
-                      label="Email Address"
-                      name="email"
-                      type="email"
-                      placeholder="name@email.com"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      error={errors.email}
+                      error={errors.contactInfo}
                     />
                   </div>
 
                   <FormInput
-                    label="Why would you be a great guest?"
-                    name="whyGuest"
-                    isTextArea
-                    placeholder="Tell us about your story, key failures, milestones, and the core message you want to broadcast..."
+                    label="Preferred Date"
+                    name="preferredDate"
+                    type="date"
                     required
-                    value={formData.whyGuest}
+                    value={formData.preferredDate}
                     onChange={handleChange}
-                    error={errors.whyGuest}
+                    error={errors.preferredDate}
+                  />
+
+                  <FormInput
+                    label="Event Scope & Cinema Needs"
+                    name="purpose"
+                    isTextArea
+                    placeholder="Describe your event parameters (e.g. Tech Summit, D2C Showcase, Multi-cam Live Broadcast requirements)..."
+                    required
+                    value={formData.purpose}
+                    onChange={handleChange}
+                    error={errors.purpose}
                   />
 
                   <div className="mt-4">
@@ -208,7 +190,7 @@ export default function Guest() {
                       className="w-full"
                       disabled={status.state === "loading"}
                     >
-                      {status.state === "loading" ? "Transmitting..." : "Apply Now"}
+                      {status.state === "loading" ? "Checking calendar..." : "Request Event Coverage"}
                     </Button>
                   </div>
                 </motion.form>
@@ -216,21 +198,33 @@ export default function Guest() {
             </AnimatePresence>
           </div>
 
-          {/* Right Column: Pitch */}
+          {/* Right Column: Event Coverage Pitch */}
           <div className="lg:col-span-5 flex flex-col gap-6 text-left order-1 lg:order-2">
             <span className="font-inter font-bold text-xs uppercase tracking-widest text-brand-ember">
-              // Guest Proposals
+              // Event Capture
             </span>
             <h2 className="font-fraunces font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-brand-bone">
-              STEP INTO <br />
-              THE SPOTLIGHT
+              CINEMATIC <br />
+              EVENT COVERAGE
             </h2>
             <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
-              We host industry leaders, disruptive builders, and raw creative powerhouses. If you have built something remarkable, overcome massive barriers, or possess specialized expertise that the world needs to hear, we want you on our set.
+              Translate your large scale gatherings, corporate product reveals, or live showcases into epic digital assets. We deploy professional cinematography crews, stabilizing rigs, and high-fidelity sound captures to make your event look expensive.
             </p>
-            <p className="font-inter text-xs text-brand-bone-secondary leading-relaxed">
-              *Note: We record high-end, multi-cam physical episodes in our premium studio. Remote options are available for selected international guests.*
-            </p>
+
+            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary">
+              <li className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
+                <span><strong className="font-bold text-brand-bone">Same-Day Recaps</strong>: Dynamic vertical video cuts produced on site.</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
+                <span><strong className="font-bold text-brand-bone">Multi-Angle Coverage</strong>: High-end stabilised camera sweeps.</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
+                <span><strong className="font-bold text-brand-bone">Brand Integrations</strong>: Connecting event assets with creator reach.</span>
+              </li>
+            </ul>
           </div>
 
         </div>

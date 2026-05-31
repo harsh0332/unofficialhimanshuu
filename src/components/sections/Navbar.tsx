@@ -10,11 +10,12 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
 
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Work", href: "#work" },
-    { name: "The Unofficial Talks", href: "#talks" },
-    { name: "Clients", href: "#clients" },
+    { name: "About", href: "#hero" },
+    { name: "Podcast", href: "#podcast" },
+    { name: "Apply", href: "#guest" },
+    { name: "Sponsor", href: "#sponsor" },
+    { name: "Booking", href: "#studio-booking" },
+    { name: "Roadmap", href: "#roadmap" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -38,7 +39,7 @@ export default function Navbar() {
 
     const observerOptions = {
       root: null,
-      rootMargin: "-20% 0px -60% 0px", // triggers when section covers center part of screen
+      rootMargin: "-25% 0px -55% 0px", // triggers when section covers center part of screen
       threshold: 0.1,
     };
 
@@ -78,7 +79,7 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-brand-obsidian/90 backdrop-blur-md border-b border-brand-border py-4"
+            ? "bg-brand-ink/90 backdrop-blur-md border-b border-brand-border-hairline py-4"
             : "bg-transparent py-6"
         }`}
       >
@@ -86,12 +87,12 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#"
-            className="font-fraunces font-extrabold text-lg md:text-xl tracking-tight uppercase flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian"
+            className="font-fraunces font-extrabold text-lg md:text-xl tracking-tight uppercase flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
             aria-label="The Unofficial Studios Home"
           >
-            <span className="text-brand-ivory">The</span>
-            <span className="text-brand-gold">Unofficial</span>
-            <span className="text-brand-ivory">Studios</span>
+            <span className="text-brand-bone">The</span>
+            <span className="text-brand-ember">Unofficial</span>
+            <span className="text-brand-bone">Studios</span>
           </a>
 
           {/* Desktop Nav Links */}
@@ -102,8 +103,8 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`font-inter text-xs uppercase tracking-wider transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian px-2 py-1 ${
-                    isActive ? "text-brand-gold" : "text-brand-muted hover:text-brand-gold"
+                  className={`font-inter text-xs uppercase tracking-wider transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-2 py-1 ${
+                    isActive ? "text-brand-ember" : "text-brand-bone-secondary hover:text-brand-ember"
                   }`}
                 >
                   {link.name}
@@ -122,7 +123,7 @@ export default function Navbar() {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-brand-ivory hover:text-brand-gold transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian"
+            className="lg:hidden p-2 text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
             aria-expanded={isMobileMenuOpen}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -133,14 +134,14 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-brand-obsidian flex flex-col justify-center items-center transition-all duration-500 ease-in-out lg:hidden ${
+        className={`fixed inset-0 z-40 bg-brand-ink flex flex-col justify-center items-center transition-all duration-500 ease-in-out lg:hidden ${
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Subtle gold radial glow for mobile overlay */}
-        <div className="absolute inset-0 radial-glow opacity-25 pointer-events-none" />
+        {/* Subtle ember radial glow for mobile overlay */}
+        <div className="absolute inset-0 radial-glow opacity-20 pointer-events-none" />
 
         <nav className="relative z-10 flex flex-col items-center gap-8 text-center" aria-label="Mobile navigation">
           {navLinks.map((link, idx) => {
@@ -150,8 +151,8 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`font-fraunces font-bold text-xl md:text-2xl uppercase tracking-widest transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-obsidian px-4 py-2 ${
-                  isActive ? "text-brand-gold" : "text-brand-muted hover:text-brand-ivory"
+                className={`font-fraunces font-bold text-xl md:text-2xl uppercase tracking-widest transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-4 py-2 ${
+                  isActive ? "text-brand-ember" : "text-brand-bone-secondary hover:text-brand-bone"
                 }`}
                 style={{
                   transitionDelay: `${idx * 50}ms`,

@@ -28,13 +28,13 @@ export default function Button({
 
   const variantStyles = {
     primary:
-      "bg-brand-gold text-brand-obsidian hover:bg-brand-gold-deep shadow-[0_0_15px_rgba(201,168,106,0.22)] hover:shadow-[0_0_25px_rgba(201,168,106,0.45)]",
+      "bg-brand-ember text-brand-ink hover:bg-brand-ember-deep shadow-[0_0_15px_rgba(226,73,46,0.20)] hover:shadow-[0_0_25px_rgba(226,73,46,0.40)]",
     secondary:
-      "bg-brand-ivory text-brand-obsidian hover:bg-transparent hover:text-brand-ivory border border-brand-ivory hover:border-brand-gold",
+      "bg-brand-bone text-brand-ink hover:bg-transparent hover:text-brand-bone border border-brand-bone hover:border-brand-ember",
     outline:
-      "bg-transparent text-brand-ivory border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5",
+      "bg-transparent text-brand-bone border border-brand-ember/30 hover:border-brand-ember hover:bg-brand-ember/5",
     ghost:
-      "bg-transparent text-brand-ivory hover:text-brand-gold",
+      "bg-transparent text-brand-bone hover:text-brand-ember",
   };
 
   const buttonContent = (

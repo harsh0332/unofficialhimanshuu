@@ -21,39 +21,43 @@ export default function Footer() {
     "https://wa.me/919999999999?text=Hi%20The%20Unofficial%20Studios,%20I'd%20like%20to%20collaborate!";
 
   const footerLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Work", href: "#work" },
-    { name: "The Unofficial Talks", href: "#talks" },
+    { name: "About", href: "#hero" },
+    { name: "Podcast Hub", href: "#podcast" },
+    { name: "Apply Guest", href: "#guest" },
+    { name: "Sponsor Inquiry", href: "#sponsor" },
+    { name: "Studio Booking", href: "#studio-booking" },
+    { name: "Roadmap Teaser", href: "#roadmap" },
+    { name: "Contact System", href: "#contact" },
   ];
 
   return (
     <>
-      <footer className="relative w-full bg-brand-obsidian border-t border-brand-border py-12 md:py-16 overflow-hidden z-20 font-inter">
+      <footer className="relative w-full bg-brand-ink border-t border-brand-border-hairline py-12 md:py-16 overflow-hidden z-20 font-inter">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           
           {/* Logo / Brand Name */}
           <div className="flex flex-col gap-2">
             <a
               href="#"
-              className="font-fraunces font-extrabold text-md md:text-lg uppercase tracking-tight flex justify-center md:justify-start items-center gap-1 focus:outline-none"
+              className="font-fraunces font-extrabold text-md md:text-lg uppercase tracking-tight flex justify-center md:justify-start items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-1"
+              aria-label="The Unofficial Studios Home"
             >
-              <span className="text-brand-ivory">The</span>
-              <span className="text-brand-gold">Unofficial</span>
-              <span className="text-brand-ivory">Studios</span>
+              <span className="text-brand-bone">The</span>
+              <span className="text-brand-ember">Unofficial</span>
+              <span className="text-brand-bone">Studios</span>
             </a>
-            <span className="font-inter text-xxs text-brand-muted uppercase tracking-widest">
-              Indore, India — Media Headquarters
+            <span className="font-inter text-xxs text-brand-bone-muted uppercase tracking-widest">
+              Indore, India — Cinematic Media Headquarters
             </span>
           </div>
 
           {/* Footer Anchors navigation */}
-          <nav className="flex items-center gap-6 md:gap-8 flex-wrap justify-center">
+          <nav className="flex items-center gap-6 md:gap-8 flex-wrap justify-center" aria-label="Footer Navigation">
             {footerLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="font-inter text-xs uppercase tracking-wider text-brand-muted hover:text-brand-gold transition-colors duration-300 font-semibold"
+                className="font-inter text-xs uppercase tracking-wider text-brand-bone-secondary hover:text-brand-ember transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
               >
                 {link.name}
               </a>
@@ -64,22 +68,22 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-end gap-3">
             <a
               href="mailto:work.unofficialhimanshu@gmail.com"
-              className="inline-flex items-center gap-2 font-fraunces font-bold text-xxs md:text-xs uppercase tracking-wider text-brand-ivory hover:text-brand-gold transition-colors duration-300"
+              className="inline-flex items-center gap-2 font-fraunces font-bold text-xxs md:text-xs uppercase tracking-wider text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
             >
-              <Mail size={14} className="text-brand-gold" />
+              <Mail size={14} className="text-brand-ember" />
               <span>work.unofficialhimanshu@gmail.com</span>
             </a>
 
             {/* Social Icons Strip */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 text-xxs font-mono uppercase tracking-widest text-brand-muted">
+            <div className="flex flex-col sm:flex-row items-center gap-4 text-xxs font-mono uppercase tracking-widest text-brand-bone-secondary">
               <a
                 href="https://instagram.com/unofficialhimanshu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-brand-ivory transition-colors duration-300"
+                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
                 aria-label="Himanshu Soni Instagram"
               >
-                <InstagramIcon className="w-3.5 h-3.5 text-brand-gold" />
+                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember" />
                 <span>@unofficialhimanshu</span>
               </a>
               <span className="hidden sm:inline-block text-white/5">|</span>
@@ -87,10 +91,10 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-brand-ivory transition-colors duration-300"
+                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
                 aria-label="The Unofficial Studios Instagram"
               >
-                <InstagramIcon className="w-3.5 h-3.5 text-brand-gold" />
+                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember" />
                 <span>@the_unofficial_studios</span>
               </a>
             </div>
@@ -99,24 +103,25 @@ export default function Footer() {
         </div>
 
         {/* Copyright strip */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-brand-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xxs text-brand-muted font-inter uppercase tracking-widest">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-brand-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-xxs text-brand-bone-muted font-inter uppercase tracking-widest">
           <span>&copy; {currentYear} The Unofficial Studios. All rights reserved.</span>
-          <span>Crafted with Obsidian & Champagne visual aesthetic.</span>
+          <span>Crafted in the "Ink & Bone / Ember" cinematic design system.</span>
         </div>
       </footer>
 
-      {/* Persistent Floating WhatsApp "Chat with us" Button (Champagne Gold re-theming) */}
+      {/* Persistent Floating WhatsApp "Chat with us" Button (Ember Re-theming) */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 bg-brand-gold hover:bg-brand-gold-deep text-brand-obsidian p-3.5 md:p-4 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(201,168,106,0.3)] hover:shadow-[0_4px_30px_rgba(201,168,106,0.5)] transition-all duration-300 hover:scale-105 group cursor-pointer focus:outline-none"
+        className="fixed bottom-6 right-6 z-40 bg-brand-ember hover:bg-brand-ember-deep text-brand-ink p-3.5 md:p-4 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(226,73,46,0.3)] hover:shadow-[0_4px_30px_rgba(226,73,46,0.5)] transition-all duration-300 hover:scale-105 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
         aria-label="Chat with us on WhatsApp"
+        style={{ minWidth: "48px", minHeight: "48px" }}
       >
-        <MessageCircle size={20} className="fill-current text-brand-obsidian transition-transform duration-300 group-hover:rotate-6" />
+        <MessageCircle size={20} className="fill-current text-brand-ink transition-transform duration-300 group-hover:rotate-6" />
         
         {/* Hover Slide out label for Desktop only */}
-        <span className="max-w-0 overflow-hidden font-inter font-bold uppercase tracking-widest text-[9px] group-hover:max-w-[120px] group-hover:ml-2 transition-all duration-500 ease-out whitespace-nowrap hidden md:inline-block">
+        <span className="max-w-0 overflow-hidden font-inter font-bold uppercase tracking-widest text-[9px] group-hover:max-w-[120px] group-hover:ml-2 transition-all duration-500 ease-out whitespace-nowrap hidden md:inline-block text-brand-ink">
           Chat With Us
         </span>
       </a>

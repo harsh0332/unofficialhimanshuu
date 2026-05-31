@@ -15,6 +15,7 @@ export default function BookStudio() {
     contactInfo: "",
   });
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<{
     state: "idle" | "loading" | "success" | "error";
     message?: string;
@@ -23,13 +24,32 @@ export default function BookStudio() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => {
+        const copy = { ...prev };
+        delete copy[name];
+        return copy;
+      });
+    }
+  };
+
+  const validate = (): boolean => {
+    const newErrors: Record<string, string> = {};
+    if (!formData.name.trim()) newErrors.name = "Your name is required";
+    if (!formData.contactInfo.trim()) newErrors.contactInfo = "Phone or email is required";
+    if (!formData.preferredDate.trim()) newErrors.preferredDate = "Preferred date is required";
+    if (!formData.purpose.trim()) newErrors.purpose = "Purpose of booking is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
+
     setStatus({ state: "loading" });
 
-    // Map fields matching user specifications
     const payloadData = {
       name: formData.name,
       purpose: formData.purpose,
@@ -37,7 +57,8 @@ export default function BookStudio() {
       contactInfo: formData.contactInfo,
     };
 
-    const result = await submitLeadForm("studio_booking", payloadData);
+    // Submitting under the exact required formType: "studio-booking"
+    const result = await submitLeadForm("studio-booking", payloadData);
 
     if (result.success) {
       setStatus({
@@ -50,6 +71,7 @@ export default function BookStudio() {
         preferredDate: "",
         contactInfo: "",
       });
+      setErrors({});
     } else {
       setStatus({
         state: "error",
@@ -59,46 +81,49 @@ export default function BookStudio() {
   };
 
   return (
-    <section id="book-studio" className="relative w-full py-24 md:py-32 bg-brand-black overflow-hidden z-20 border-t border-white/5">
-      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-brand-crimson/5 rounded-full blur-[100px] pointer-events-none" />
+    <section
+      id="studio-booking"
+      className="relative w-full py-24 md:py-32 bg-brand-ink overflow-hidden z-20 border-b border-brand-border-hairline"
+    >
+      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-brand-ember-glow rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
           {/* Left Column: Studio Booking Pitch */}
           <div className="lg:col-span-5 flex flex-col gap-6 text-left">
-            <span className="font-syne font-bold text-xs uppercase tracking-widest text-brand-crimson">
+            <span className="font-inter font-bold text-xs uppercase tracking-widest text-brand-ember">
               // Studio Hire
             </span>
-            <h2 className="font-syne font-extrabold text-3xl md:text-5xl uppercase tracking-tight">
+            <h2 className="font-fraunces font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-brand-bone">
               BOOK INDORE'S <br />
               ELITE SET
             </h2>
-            <p className="font-inter text-sm md:text-base text-brand-muted leading-relaxed">
+            <p className="font-inter text-sm md:text-base text-brand-bone-secondary leading-relaxed">
               Elevate your podcasts, high-contrast interviews, and commercial visual projects. Rent out our fully acoustically treated media space featuring state-of-the-art 4K multicar cameras, Shure broadcasting microphones, and high-end cinematic setups.
             </p>
 
-            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-white/80">
+            <ul className="flex flex-col gap-4 mt-4 font-inter text-xs md:text-sm text-brand-bone-secondary">
               <li className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson" />
-                <span>**Broadcast Quality**: Multi-camera 4K recording capabilities.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
+                <span><strong className="font-bold text-brand-bone">Broadcast Quality</strong>: Multi-camera 4K recording capabilities.</span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson" />
-                <span>**Acoustic Treat**: High-end insulation for perfect audio capture.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
+                <span><strong className="font-bold text-brand-bone">Acoustic Treat</strong>: High-end insulation for perfect audio capture.</span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-crimson" />
-                <span>**Pro Staff**: Technical engineer on site for full session support.</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-ember shrink-0" />
+                <span><strong className="font-bold text-brand-bone">Pro Staff</strong>: Technical engineer on site for full session support.</span>
               </li>
             </ul>
           </div>
 
           {/* Right Column: Interaction Form Container */}
-          <div className="lg:col-span-7 bg-brand-dark/40 border border-white/5 p-8 md:p-12 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-crimson/5 rounded-full blur-[40px] pointer-events-none" />
+          <div className="lg:col-span-7 bg-brand-surface border border-brand-border-hairline p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
             
-            <h3 className="font-syne font-extrabold text-lg md:text-xl uppercase tracking-wider text-white mb-8 text-left">
+            <h3 className="font-fraunces font-extrabold text-lg md:text-xl uppercase tracking-wider text-brand-bone mb-8 text-left">
               STUDIO BOOKING REQUEST
             </h3>
 
@@ -110,21 +135,21 @@ export default function BookStudio() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   className="flex flex-col items-center justify-center py-12 text-center"
                 >
-                  <CheckCircle2 size={48} className="text-brand-crimson mb-4" />
-                  <h4 className="font-syne font-bold text-lg uppercase tracking-wider text-white mb-2">
+                  <CheckCircle2 size={48} className="text-brand-ember mb-4" />
+                  <h4 className="font-fraunces font-bold text-lg uppercase tracking-wider text-brand-bone mb-2">
                     Request Received
                   </h4>
-                  <p className="font-inter text-xs text-brand-muted max-w-sm">
+                  <p className="font-inter text-xs text-brand-bone-secondary max-w-sm">
                     Perfect! Our studio engineer will verify the slot availability on your preferred date and contact you directly via phone or email to finalize your booking.
                   </p>
                   {status.message && (
-                    <span className="mt-4 px-3 py-1 bg-white/5 text-xxs font-mono text-brand-muted rounded">
+                    <span className="mt-4 px-3 py-1 bg-brand-ink border border-brand-border-hairline text-xxs font-mono text-brand-ember rounded">
                       {status.message}
                     </span>
                   )}
                   <button
                     onClick={() => setStatus({ state: "idle" })}
-                    className="mt-8 font-syne font-bold text-xxs uppercase tracking-widest text-brand-crimson hover:text-white transition-colors duration-300 focus:outline-none"
+                    className="mt-8 font-inter font-bold text-xxs uppercase tracking-widest text-brand-ember hover:text-brand-bone transition-colors duration-300 focus:outline-none"
                   >
                     Submit Another Inquiry
                   </button>
@@ -136,9 +161,10 @@ export default function BookStudio() {
                   exit={{ opacity: 0 }}
                   onSubmit={handleSubmit}
                   className="flex flex-col gap-6"
+                  noValidate
                 >
                   {status.state === "error" && (
-                    <div className="flex items-center gap-3 bg-brand-crimson/10 border border-brand-crimson/30 p-4 text-brand-crimson text-xs font-inter">
+                    <div className="flex items-center gap-3 bg-brand-ember/10 border border-brand-ember/30 p-4 text-brand-ember text-xs font-inter">
                       <AlertCircle size={16} className="shrink-0" />
                       <span>{status.message}</span>
                     </div>
@@ -152,14 +178,16 @@ export default function BookStudio() {
                       required
                       value={formData.name}
                       onChange={handleChange}
+                      error={errors.name}
                     />
                     <FormInput
-                      label="Contact Details (Email or Phone)"
+                      label="Phone / Email Address"
                       name="contactInfo"
                       placeholder="name@email.com / +91"
                       required
                       value={formData.contactInfo}
                       onChange={handleChange}
+                      error={errors.contactInfo}
                     />
                   </div>
 
@@ -170,6 +198,7 @@ export default function BookStudio() {
                     required
                     value={formData.preferredDate}
                     onChange={handleChange}
+                    error={errors.preferredDate}
                   />
 
                   <FormInput
@@ -180,6 +209,7 @@ export default function BookStudio() {
                     required
                     value={formData.purpose}
                     onChange={handleChange}
+                    error={errors.purpose}
                   />
 
                   <div className="mt-4">

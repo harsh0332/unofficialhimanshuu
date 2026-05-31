@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-obsidian: #0B0B0D;
-  --color-brand-surface: #141417;
-  --color-brand-card: #1A1A1E;
-  --color-brand-gold: #C9A86A;
-  --color-brand-gold-deep: #A98847;
-  --color-brand-gold-glow: rgba(201,168,106,0.22);
-  --color-brand-ivory: #F4F1EA;
-  --color-brand-muted: #B5B0A6;
-  --color-brand-muted-grey: #6E6A62;
-  --color-brand-border: rgba(255,255,255,0.07);
-  --color-brand-border-accent: rgba(201,168,106,0.18);
+  --color-brand-ink: #0A0A0B;
+  --color-brand-surface: #121214;
+  --color-brand-card: #18181B;
+  --color-brand-ember: #E2492E;
+  --color-brand-ember-deep: #B83A24;
+  --color-brand-ember-glow: rgba(226, 73, 46, 0.20);
+  --color-brand-bone: #F2EFE9;
+  --color-brand-bone-secondary: #B4B0A8;
+  --color-brand-bone-muted: #6F6B63;
+  --color-brand-border-hairline: rgba(255, 255, 255, 0.07);
+  --color-brand-border-accent: rgba(226, 73, 46, 0.18);
   
   --font-fraunces: var(--font-fraunces), serif;
   --font-inter: var(--font-inter), sans-serif;
@@ -31,8 +31,8 @@
 
 /* Custom CSS Base & Scrollbar Rules */
 :root {
-  --background: #0B0B0D;
-  --foreground: #F4F1EA;
+  --background: #0A0A0B;
+  --foreground: #F2EFE9;
 }
 
 html {
@@ -53,37 +53,37 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0B0D;
+  background: #0A0A0B;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1A1A1E;
+  background: #18181B;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C9A86A;
+  background: #E2492E;
 }
 
 /* Cinematic Effects */
 .radial-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(201, 168, 106, 0.12) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(226, 73, 46, 0.12) 0%, transparent 60%);
 }
 
 .cinematic-vignette {
-  background: radial-gradient(circle, transparent 20%, rgba(11,11,13,0.9) 100%);
+  background: radial-gradient(circle, transparent 20%, rgba(10,10,11,0.9) 100%);
   pointer-events: none;
 }
 
 .text-stroke-outline {
-  -webkit-text-stroke: 1px rgba(244, 241, 234, 0.15);
+  -webkit-text-stroke: 1px rgba(242, 239, 233, 0.15);
   color: transparent;
 }
 
 .text-stroke-outline:hover {
-  -webkit-text-stroke: 1px #C9A86A;
+  -webkit-text-stroke: 1px #E2492E;
 }
 
 /* Focus and accessibility styles */
 *:focus-visible {
-  outline: 2px solid #C9A86A;
+  outline: 2px solid #E2492E;
   outline-offset: 2px;
 }

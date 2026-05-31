@@ -1,5 +1,15 @@
 export interface FormPayload {
-  formType: "brand_collaboration" | "guest_application" | "studio_booking" | "lead_generation";
+  formType:
+    | "brand_collaboration"
+    | "guest_application"
+    | "studio_booking"
+    | "lead_generation"
+    | "guest"
+    | "sponsor"
+    | "contact"
+    | "studio-booking"
+    | "event-booking"
+    | "newsletter";
   data: Record<string, string>;
   timestamp: string;
 }

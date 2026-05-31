@@ -27,18 +27,18 @@ export default function FormInput({
   isTextArea = false,
   options,
 }: FormInputProps) {
-  // Uses brand-border (hairline border) by default, and active focus maps to brand-gold
+  // Uses brand-border-hairline by default, and active focus maps to brand-ember
   const inputClass = `w-full bg-brand-surface border ${
-    error ? "border-brand-gold" : "border-brand-border"
-  } focus:border-brand-gold focus:ring-1 focus:ring-brand-gold text-brand-ivory px-4 py-3.5 rounded-none font-inter text-sm transition-all duration-300 placeholder:text-brand-muted/40 focus:outline-none`;
+    error ? "border-brand-ember" : "border-brand-border-hairline"
+  } focus:border-brand-ember focus:ring-1 focus:ring-brand-ember text-brand-bone px-4 py-3.5 rounded-none font-inter text-sm transition-all duration-300 placeholder:text-brand-bone-secondary/40 focus:outline-none`;
 
   return (
     <div className="flex flex-col gap-2 w-full text-left font-inter">
-      <label htmlFor={name} className="font-inter font-bold uppercase tracking-wider text-xxs text-brand-muted flex justify-between items-center">
+      <label htmlFor={name} className="font-inter font-bold uppercase tracking-wider text-xxs text-brand-bone-secondary flex justify-between items-center">
         <span>
-          {label} {required && <span className="text-brand-gold font-inter">*</span>}
+          {label} {required && <span className="text-brand-ember font-inter">*</span>}
         </span>
-        {error && <span className="text-brand-gold text-xxs font-inter tracking-normal normal-case font-medium">{error}</span>}
+        {error && <span className="text-brand-ember text-xxs font-inter tracking-normal normal-case font-medium">{error}</span>}
       </label>
 
       {isTextArea ? (

@@ -32,8 +32,8 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="relative w-full bg-brand-ink border-t border-brand-border-hairline py-12 md:py-16 overflow-hidden z-20 font-inter">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+      <footer className="relative w-full bg-brand-ink border-t border-brand-border-hairline pt-12 pb-28 md:py-16 overflow-hidden z-20 font-inter">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left w-full max-w-full">
           
           {/* Logo / Brand Name */}
           <div className="flex flex-col gap-2">
@@ -65,13 +65,13 @@ export default function Footer() {
           </nav>
 
           {/* Contact Details & Social Handles */}
-          <div className="flex flex-col items-center md:items-end gap-2 w-full max-w-xs md:max-w-none">
+          <div className="flex flex-col items-center md:items-end gap-2 w-full max-w-full md:max-w-none px-4">
             <a
               href="mailto:work.unofficialhimanshu@gmail.com"
-              className="inline-flex items-center gap-2 font-inter font-bold text-[10px] sm:text-xs text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
+              className="inline-flex items-center gap-2 font-inter font-bold text-[9px] xs:text-[10px] sm:text-xs text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere] w-full justify-center md:justify-end"
             >
               <Mail size={14} className="text-brand-ember shrink-0" />
-              <span className="lowercase">work.unofficialhimanshu@gmail.com</span>
+              <span className="lowercase break-all [overflow-wrap:anywhere]">work.unofficialhimanshu@gmail.com</span>
             </a>
 
             {/* Social Icons Strip */}
@@ -84,7 +84,7 @@ export default function Footer() {
                 aria-label="Himanshu Soni Instagram"
               >
                 <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
-                <span className="lowercase">@unofficialhimanshu</span>
+                <span className="lowercase break-all [overflow-wrap:anywhere]">@unofficialhimanshu</span>
               </a>
               <span className="hidden sm:inline-block text-white/5">|</span>
               <a
@@ -95,7 +95,7 @@ export default function Footer() {
                 aria-label="The Unofficial Studios Instagram"
               >
                 <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
-                <span className="lowercase">@the_unofficial_studios</span>
+                <span className="lowercase break-all [overflow-wrap:anywhere]">@the_unofficial_studios</span>
               </a>
             </div>
           </div>
@@ -103,9 +103,9 @@ export default function Footer() {
         </div>
 
         {/* Copyright strip */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-brand-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-xxs text-brand-bone-muted font-inter uppercase tracking-widest">
-          <span>&copy; {currentYear} The Unofficial Studios. All rights reserved.</span>
-          <span>Crafted in the "Ink & Bone / Ember" cinematic design system.</span>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-brand-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] xs:text-[10px] sm:text-xxs text-brand-bone-muted font-inter uppercase tracking-wide md:tracking-widest w-full text-center">
+          <span className="break-words [overflow-wrap:anywhere] max-w-full">&copy; {currentYear} The Unofficial Studios. All rights reserved.</span>
+          <span className="break-words [overflow-wrap:anywhere] max-w-full">Crafted in the "Ink & Bone / Ember" cinematic design system.</span>
         </div>
       </footer>
 

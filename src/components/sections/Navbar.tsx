@@ -84,11 +84,11 @@ export default function Navbar() {
             : "bg-transparent py-4 md:py-6"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between gap-4 xl:gap-8">
           {/* Logo */}
           <a
             href="#"
-            className="font-fraunces font-extrabold text-lg md:text-xl tracking-tight uppercase flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+            className="font-fraunces font-extrabold text-[15px] xs:text-base sm:text-lg md:text-xl tracking-tight uppercase flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
             aria-label="The Unofficial Studios Home"
           >
             <span className="text-brand-bone">The</span>
@@ -97,14 +97,14 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Desktop navigation">
+          <nav className="hidden xl:flex items-center gap-4 xl:gap-5 2xl:gap-8" aria-label="Desktop navigation">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
               return (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`font-inter text-xs uppercase tracking-wider transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-2 py-1 ${
+                  className={`font-inter text-[11px] 2xl:text-xs uppercase tracking-wider transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-1.5 2xl:px-2 py-1 ${
                     isActive ? "text-brand-ember" : "text-brand-bone-secondary hover:text-brand-ember"
                   }`}
                 >
@@ -115,7 +115,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <Button href="#contact" variant="primary">
               Get In Touch
             </Button>
@@ -124,7 +124,7 @@ export default function Navbar() {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+            className="xl:hidden p-2 text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
             aria-expanded={isMobileMenuOpen}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -135,7 +135,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-brand-ink flex flex-col justify-center items-center transition-all duration-500 ease-in-out lg:hidden ${
+        className={`fixed inset-0 z-40 bg-brand-ink flex flex-col justify-start sm:justify-center items-center overflow-y-auto py-16 sm:py-8 transition-all duration-500 ease-in-out xl:hidden ${
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"

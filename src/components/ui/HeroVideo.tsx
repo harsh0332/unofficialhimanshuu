@@ -16,17 +16,12 @@ export default function HeroVideo() {
   // Run environmental check to confirm if loading the video is safe
   useEffect(() => {
     const checkConstraints = () => {
-      // 1. Viewport size check (<768px -> mobile poster fallback only)
-      if (window.innerWidth < 768) {
-        return false;
-      }
-
-      // 2. Prefers-reduced-motion check
+      // 1. Prefers-reduced-motion check
       if (shouldReduceMotion) {
         return false;
       }
 
-      // 3. Connection bandwidth diagnosis
+      // 2. Connection bandwidth diagnosis
       if (typeof navigator !== "undefined") {
         const conn =
           (navigator as any).connection ||
@@ -38,7 +33,7 @@ export default function HeroVideo() {
             return false;
           }
           const type = conn.effectiveType;
-          if (type === "2g" || type === "slow-2g" || type === "3g") {
+          if (type === "2g" || type === "slow-2g") {
             return false;
           }
         }

@@ -154,8 +154,8 @@ export default function StudioBackground() {
 
     // Animation Loop
     const render = () => {
-      // Pause completely if tab is hidden, element is offscreen, or motion is reduced
-      if (!isVisible || !isTabVisible || shouldReduceMotion) {
+      // Pause completely if tab is hidden, element is offscreen, motion is reduced, or on mobile
+      if (!isVisible || !isTabVisible || shouldReduceMotion || isMobile) {
         animationFrameId = requestAnimationFrame(render);
         return;
       }

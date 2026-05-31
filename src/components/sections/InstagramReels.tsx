@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Play, Code, Heart, MessageCircle, ExternalLink } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -14,7 +14,7 @@ interface Reel {
   likes: string;
   comments: string;
   thumbnail: string;       // Local cover path e.g. /reel1-cover.jpg
-  videoUrl: string;        // Local video path e.g. /reel1.mp4
+  videoUrl: string;        // Local video path e.g. /reel1-preview.mp4
   instagramUrl: string;    // Direct Instagram profile or post link
   captionHint: string;
 }
@@ -30,10 +30,20 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function InstagramReels() {
   const [hoveredReelId, setHoveredReelId] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
-  // Exactly 3 Premium local Reels mapped to the /public directory files
-  // Using the exact target links and custom organic title details provided
+  // Detect mobile viewport to fully disable canvas loops and video loads
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Exactly 3 Premium local Reels mapped to the /public directory preview files
   const featuredReels: Reel[] = [
     {
       id: 1,
@@ -43,7 +53,7 @@ export default function InstagramReels() {
       likes: "165K",
       comments: "2.1K",
       thumbnail: "/reel1-cover.jpg",
-      videoUrl: "/reel1.mp4",
+      videoUrl: "/reel1-preview.mp4",
       instagramUrl: "https://www.instagram.com/reel/DR7w6yRjpIQ/",
       captionHint: "Click to watch actual Reel / Hover to watch traffic setup details",
     },
@@ -55,7 +65,7 @@ export default function InstagramReels() {
       likes: "108K",
       comments: "1.2K",
       thumbnail: "/reel2-cover.jpg",
-      videoUrl: "/reel2.mp4",
+      videoUrl: "/reel2-preview.mp4",
       instagramUrl: "https://www.instagram.com/reel/DSLNzrhjjHE/",
       captionHint: "Click to watch actual Reel / Hover to watch storytelling setups",
     },
@@ -67,7 +77,7 @@ export default function InstagramReels() {
       likes: "210K",
       comments: "3.4K",
       thumbnail: "/reel3-cover.jpg",
-      videoUrl: "/reel3.mp4",
+      videoUrl: "/reel3-preview.mp4",
       instagramUrl: "https://www.instagram.com/reel/DYxZKusy5cM/",
       captionHint: "Click to watch actual Reel / Hover to view milestone metrics",
     },
@@ -114,13 +124,15 @@ export default function InstagramReels() {
                 onMouseEnter={() => setHoveredReelId(reel.id)}
                 onMouseLeave={() => setHoveredReelId(null)}
               >
-                {hoveredReelId === reel.id && !shouldReduceMotion ? (
+                {hoveredReelId === reel.id && !shouldReduceMotion && !isMobile ? (
                   <video
                     src={reel.videoUrl}
                     autoPlay
                     muted
                     loop
                     playsInline
+                    preload="none"
+                    poster={reel.thumbnail}
                     className="absolute inset-0 w-full h-full object-cover z-10 scale-105 transition-transform duration-500"
                   />
                 ) : (
@@ -130,7 +142,7 @@ export default function InstagramReels() {
                         src={reel.thumbnail}
                         alt={`Instagram Reel Cover: ${reel.title}`}
                         fill
-                        sizes="(max-w-768px) 100vw, 33vw"
+                        sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 33vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
                       />

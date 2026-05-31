@@ -1,18 +1,68 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
-import Talks from "@/components/sections/Talks";
-import InstagramReels from "@/components/sections/InstagramReels";
-import Guest from "@/components/sections/Guest";
-import Brands from "@/components/sections/Brands";
-import Clients from "@/components/sections/Clients";
-import LeadForm from "@/components/sections/LeadForm";
-import BookStudio from "@/components/sections/BookStudio";
-import EventBooking from "@/components/sections/EventBooking";
-import PaymentGateway from "@/components/sections/PaymentGateway";
-import WhatsAppAutomation from "@/components/sections/WhatsAppAutomation";
-import TeaserRoadmap from "@/components/sections/TeaserRoadmap";
-import Footer from "@/components/sections/Footer";
+
+// CLS-safe visual placeholders matching actual section dimensions and design tokens
+const SectionPlaceholder = ({ height, className = "" }: { height: string; className?: string }) => (
+  <div 
+    style={{ minHeight: height }} 
+    className={`w-full bg-brand-ink flex items-center justify-center border-b border-brand-border-hairline relative ${className}`}
+  >
+    {/* Cinematic minimal ember load loader */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none opacity-40" />
+    <div className="w-6 h-6 border-2 border-brand-ember/25 border-t-brand-ember rounded-full animate-spin relative z-10" />
+  </div>
+);
+
+// Lazy below-the-fold component split loads
+const Talks = dynamic(() => import("@/components/sections/Talks"), {
+  loading: () => <SectionPlaceholder height="600px" />,
+});
+
+const InstagramReels = dynamic(() => import("@/components/sections/InstagramReels"), {
+  loading: () => <SectionPlaceholder height="600px" />,
+});
+
+const Guest = dynamic(() => import("@/components/sections/Guest"), {
+  loading: () => <SectionPlaceholder height="500px" />,
+});
+
+const Brands = dynamic(() => import("@/components/sections/Brands"), {
+  loading: () => <SectionPlaceholder height="500px" />,
+});
+
+const Clients = dynamic(() => import("@/components/sections/Clients"), {
+  loading: () => <SectionPlaceholder height="120px" />,
+});
+
+const LeadForm = dynamic(() => import("@/components/sections/LeadForm"), {
+  loading: () => <SectionPlaceholder height="600px" />,
+});
+
+const BookStudio = dynamic(() => import("@/components/sections/BookStudio"), {
+  loading: () => <SectionPlaceholder height="500px" />,
+});
+
+const EventBooking = dynamic(() => import("@/components/sections/EventBooking"), {
+  loading: () => <SectionPlaceholder height="500px" />,
+});
+
+const PaymentGateway = dynamic(() => import("@/components/sections/PaymentGateway"), {
+  loading: () => <SectionPlaceholder height="400px" />,
+});
+
+const WhatsAppAutomation = dynamic(() => import("@/components/sections/WhatsAppAutomation"), {
+  loading: () => <SectionPlaceholder height="450px" />,
+});
+
+const TeaserRoadmap = dynamic(() => import("@/components/sections/TeaserRoadmap"), {
+  loading: () => <SectionPlaceholder height="600px" />,
+});
+
+const Footer = dynamic(() => import("@/components/sections/Footer"), {
+  loading: () => <SectionPlaceholder height="250px" />,
+});
 
 export default function Home() {
   return (

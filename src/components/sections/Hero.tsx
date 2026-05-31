@@ -152,7 +152,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Founder Display Name - Clip-Path Mask Reveal */}
-            <h1 className="font-fraunces font-bold text-5xl sm:text-7xl lg:text-8xl tracking-tight uppercase leading-none text-brand-bone select-none">
+            <h1 className="font-fraunces font-bold text-4xl xs:text-5xl sm:text-7xl lg:text-8xl tracking-tight uppercase leading-none text-brand-bone select-none">
               <span className="block overflow-hidden relative pb-1">
                 <motion.span
                   initial={{ y: shouldReduceMotion ? 0 : "100%" }}
@@ -178,9 +178,9 @@ export default function Hero() {
             {/* Positioning Statement with Kinetic Rotating Word */}
             <motion.h2
               variants={textVariants}
-              className="font-fraunces font-extrabold text-lg sm:text-xl md:text-2xl uppercase tracking-wider text-brand-bone flex flex-wrap items-center gap-x-3 gap-y-1.5 border-l-2 border-brand-ember pl-4 h-[1.3em] overflow-hidden"
+              className="font-fraunces font-extrabold text-xs xs:text-sm sm:text-lg md:text-xl lg:text-2xl uppercase tracking-wider text-brand-bone flex flex-wrap items-center gap-x-3 gap-y-1.5 border-l-2 border-brand-ember pl-4 h-[1.5em] overflow-hidden"
             >
-              <span className="text-brand-bone-secondary font-light uppercase tracking-widest text-xs md:text-sm mr-1 shrink-0 font-inter">// Brand Profile:</span>
+              <span className="text-brand-bone-secondary font-light uppercase tracking-widest text-[10px] xs:text-xs sm:text-sm mr-1 shrink-0 font-inter">// Brand Profile:</span>
               <RotatingWord words={["Creator.", "Host.", "Storyteller.", "Founder."]} />
             </motion.h2>
 

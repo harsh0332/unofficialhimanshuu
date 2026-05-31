@@ -131,7 +131,7 @@ export default function LeadForm() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left: Contact Form Card */}
-          <div className="lg:col-span-8 bg-brand-surface border border-brand-border-hairline p-8 md:p-12 relative overflow-hidden text-left">
+          <div className="lg:col-span-8 bg-brand-surface border border-brand-border-hairline p-5 sm:p-8 md:p-12 relative overflow-hidden text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
 
             <AnimatePresence mode="wait">
@@ -251,7 +251,7 @@ export default function LeadForm() {
           </div>
 
           {/* Right: Direct Contacts */}
-          <div className="lg:col-span-4 flex flex-col gap-8 text-left bg-brand-surface border border-brand-border-hairline p-8 md:p-10 relative overflow-hidden">
+          <div className="lg:col-span-4 flex flex-col gap-8 text-left bg-brand-surface border border-brand-border-hairline p-5 sm:p-8 md:p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
 
             <div className="flex flex-col gap-3">

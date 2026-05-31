@@ -124,7 +124,7 @@ export default function Brands() {
           </div>
 
           {/* Right Column: Interaction Form Container */}
-          <div className="lg:col-span-7 bg-brand-surface border border-brand-border-hairline p-8 md:p-12 relative overflow-hidden">
+          <div className="lg:col-span-7 bg-brand-surface border border-brand-border-hairline p-5 sm:p-8 md:p-12 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
             
             <h3 className="font-fraunces font-extrabold text-lg md:text-xl uppercase tracking-wider text-brand-bone mb-8 text-left">

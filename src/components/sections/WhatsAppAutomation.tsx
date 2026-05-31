@@ -56,7 +56,7 @@ export default function WhatsAppAutomation() {
           </div>
 
           {/* Right Column: Dynamic Chat Flow Mockup */}
-          <div className="lg:col-span-6 w-full max-w-md mx-auto border border-brand-border-hairline bg-brand-surface p-6 relative overflow-hidden text-left flex flex-col gap-6">
+          <div className="lg:col-span-6 w-full max-w-md mx-auto border border-brand-border-hairline bg-brand-surface p-4 sm:p-6 relative overflow-hidden text-left flex flex-col gap-6">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
 
             <div className="flex items-center justify-between border-b border-brand-border-hairline pb-4">

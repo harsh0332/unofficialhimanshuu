@@ -37,7 +37,7 @@ export default function PaymentGateway() {
         </p>
 
         {/* Dashboard Mockup Layout */}
-        <div className="w-full max-w-3xl border border-brand-border-hairline bg-brand-ink p-8 relative overflow-hidden flex flex-col md:flex-row gap-8 items-center text-left">
+        <div className="w-full max-w-3xl border border-brand-border-hairline bg-brand-ink p-5 sm:p-8 relative overflow-hidden flex flex-col md:flex-row gap-8 items-center text-left">
           <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
 
           {/* Left Block: Payment Vector Mockup */}

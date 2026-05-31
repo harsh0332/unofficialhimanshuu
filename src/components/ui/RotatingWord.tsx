@@ -27,7 +27,7 @@ export default function RotatingWord({ words, intervalMs = 2200 }: RotatingWordP
   }
 
   return (
-    <span className="inline-block relative h-[1.2em] min-w-[200px] text-left overflow-hidden align-bottom">
+    <span className="inline-block relative h-[1.2em] min-w-[120px] xs:min-w-[150px] sm:min-w-[180px] md:min-w-[200px] text-left overflow-hidden align-bottom">
       <AnimatePresence mode="wait">
         <motion.span
           key={words[index]}

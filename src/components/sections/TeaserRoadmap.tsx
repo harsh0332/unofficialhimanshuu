@@ -130,7 +130,7 @@ export default function TeaserRoadmap() {
           </div>
 
           {/* Right Column: Functional Newsletter Form */}
-          <div className="lg:col-span-5 bg-brand-ink border border-brand-border-hairline p-8 md:p-10 relative overflow-hidden flex flex-col gap-6 text-left">
+          <div className="lg:col-span-5 bg-brand-ink border border-brand-border-hairline p-5 sm:p-8 md:p-10 relative overflow-hidden flex flex-col gap-6 text-left">
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-ember-glow rounded-full blur-[40px] pointer-events-none" />
 
             <div className="flex flex-col gap-2">

@@ -13,6 +13,8 @@
   --color-brand-border-hairline: rgba(255, 255, 255, 0.07);
   --color-brand-border-accent: rgba(226, 73, 46, 0.18);
   
+  --breakpoint-xs: 480px;
+  
   --font-fraunces: var(--font-fraunces), serif;
   --font-inter: var(--font-inter), sans-serif;
   

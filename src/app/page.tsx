@@ -48,6 +48,10 @@ const InquiryRouter = dynamic(() => import("@/components/sections/InquiryRouter"
   loading: () => <SectionPlaceholder height="550px" />,
 });
 
+const MobileCTABar = dynamic(() => import("@/components/sections/MobileCTABar"), {
+  loading: () => null,
+});
+
 const Footer = dynamic(() => import("@/components/sections/Footer"), {
   loading: () => <SectionPlaceholder height="250px" />,
 });
@@ -89,6 +93,9 @@ export default function Home() {
         {/* 10. Smart Inquiry Router (Replaces 5 separate forms) */}
         <InquiryRouter />
       </main>
+
+      {/* Persistent Bottom Mobile CTA bar */}
+      <MobileCTABar />
 
       {/* 11. Stark Footer & Persistent WhatsApp Floating trigger */}
       <Footer />

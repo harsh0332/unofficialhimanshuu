@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Mic, Video, Share2, ArrowUpRight } from "lucide-react";
+import { Mic, Video, Camera, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Services() {
@@ -9,36 +9,48 @@ export default function Services() {
     {
       icon: Mic,
       title: "Podcast Production",
-      description: "Broadcasting-grade setup, raw sound engineering, multicam 4K visuals, and full-pipeline audio/video distribution.",
-      ctaLink: "#inquiry",
-      ctaText: "Launch Your Show",
+      description: "Broadcasting-grade multi-cam setup, sound engineering, and end-to-end publishing.",
+      projectType: "Podcast",
     },
     {
       icon: Video,
-      title: "Reel & Short-Video Production",
-      description: "High-octane short-form vertical content packed with visual hooks and fast-paced edits designed for virality.",
-      ctaLink: "#inquiry",
-      ctaText: "Scale Your Feeds",
+      title: "Brand Reels & Short-Form",
+      description: "High-retention vertical videos, custom hooks, and fast-paced edits built to trigger algorithms.",
+      projectType: "Reels",
     },
     {
-      icon: Share2,
-      title: "Brand Collaborations",
-      description: "Native integrations, sponsored storytelling, and creator-brand matching that converts audiences naturally.",
-      ctaLink: "#inquiry",
-      ctaText: "Partner With Us",
+      icon: Camera,
+      title: "Studio + Event Filming",
+      description: "Premium physical set rentals, Indore camera crew packages, and cinematic event coverage.",
+      projectType: "Event Coverage",
     },
   ];
 
+  // Dynamic pre-selection event dispatcher to Inquiry Router
+  const handleStartProject = (projectType: string) => {
+    const event = new CustomEvent("unofficial-inquiry-trigger", {
+      detail: { intent: "hire", projectType }
+    });
+    window.dispatchEvent(event);
+
+    const el = document.getElementById("inquiry");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="services" className="relative w-full py-24 md:py-32 bg-brand-surface border-y border-brand-border-hairline overflow-hidden z-20">
-      {/* Background spotlight */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-ember-glow rounded-full blur-[120px] pointer-events-none opacity-40" />
+      {/* Background spotlights */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-ember-glow rounded-full blur-[140px] pointer-events-none opacity-30" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
+        
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="flex flex-col gap-3 text-left">
             <span className="font-inter font-bold text-xs uppercase tracking-widest text-brand-ember">
-              // The Arsenal
+              // Purchasable Offerings
             </span>
             <h2 className="font-fraunces font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-brand-bone">
               OUR SERVICES
@@ -50,7 +62,7 @@ export default function Services() {
         </div>
 
         {/* 3-Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch">
           {servicesList.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -63,13 +75,13 @@ export default function Services() {
                 {/* Dynamic Border highlight on hover */}
                 <div className="absolute top-0 left-0 w-[2px] h-0 bg-brand-ember group-hover:h-full transition-all duration-500 ease-out" />
                 
-                <div>
+                <div className="flex flex-col text-left">
                   {/* Icon Block */}
                   <div className="w-10 h-10 flex items-center justify-center bg-brand-ember/5 border border-brand-ember/20 text-brand-ember mb-8 group-hover:bg-brand-ember group-hover:text-brand-ink transition-all duration-500">
                     <Icon size={18} className="transition-transform duration-500 group-hover:scale-110" />
                   </div>
 
-                  <h3 className="font-fraunces font-extrabold text-lg uppercase tracking-wider text-brand-bone mb-4">
+                  <h3 className="font-fraunces font-bold text-xl uppercase tracking-wide text-brand-bone mb-4 leading-tight">
                     {service.title}
                   </h3>
 
@@ -78,17 +90,19 @@ export default function Services() {
                   </p>
                 </div>
 
-                <a
-                  href={service.ctaLink}
-                  className="inline-flex items-center gap-1.5 font-inter font-bold text-[9px] uppercase tracking-widest text-brand-bone-secondary group-hover:text-brand-ember transition-colors duration-300 w-fit focus:outline-none"
+                {/* Conversion Trigger button (satisfies min-h-44px target) */}
+                <button
+                  onClick={() => handleStartProject(service.projectType)}
+                  className="inline-flex items-center gap-1.5 font-inter font-bold text-[9px] uppercase tracking-widest text-brand-bone-secondary group-hover:text-brand-ember transition-colors duration-300 w-fit focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2 min-h-[44px] cursor-pointer"
                 >
-                  <span>{service.ctaText}</span>
-                  <ArrowUpRight size={12} className="text-brand-ember" />
-                </a>
+                  <span>Start a project</span>
+                  <ArrowRight size={12} className="text-brand-ember group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
               </motion.div>
             );
           })}
         </div>
+
       </div>
     </section>
   );

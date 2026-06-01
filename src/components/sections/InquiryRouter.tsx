@@ -47,6 +47,28 @@ export default function InquiryRouter() {
     message?: string;
   }>({ state: "idle" });
 
+  // Listen for custom trigger events from other components (like Services cards)
+  React.useEffect(() => {
+    const handleTrigger = (e: Event) => {
+      const customEvent = e as CustomEvent<{ intent: Intent; projectType?: string }>;
+      if (customEvent.detail) {
+        setIntent(customEvent.detail.intent);
+        setFormData((prev) => ({
+          ...prev,
+          projectType: customEvent.detail.projectType || prev.projectType,
+        }));
+        setStep(1); // Skip Step 0 and go straight to Step 1
+        setErrors({}); // Reset error boundaries
+        setStatus({ state: "idle" }); // Reset status states
+      }
+    };
+
+    window.addEventListener("unofficial-inquiry-trigger", handleTrigger);
+    return () => {
+      window.removeEventListener("unofficial-inquiry-trigger", handleTrigger);
+    };
+  }, []);
+
   // WhatsApp helper to prefill chat based on intent and collected data
   const getWhatsAppUrl = () => {
     let text = "Hi The Unofficial Studios, I'd like to collaborate!";

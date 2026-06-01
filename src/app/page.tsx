@@ -53,6 +53,11 @@ const Testimonials = dynamic(() => import("@/components/sections/Testimonials"),
   loading: () => <SectionPlaceholder height="400px" />,
 });
 
+const PressStrip = dynamic(() => import("@/components/sections/PressStrip"), {
+  ssr: false,
+  loading: () => null,
+});
+
 const InquiryRouter = dynamic(() => import("@/components/sections/InquiryRouter"), {
   ssr: false,
   loading: () => <SectionPlaceholder height="550px" />,
@@ -101,6 +106,9 @@ export default function Home() {
 
         {/* 9. Brand Testimonials */}
         <Testimonials />
+
+        {/* Borrowed Credibility Press Strip */}
+        <PressStrip />
 
         {/* 10. Smart Inquiry Router (Replaces 5 separate forms) */}
         <InquiryRouter />

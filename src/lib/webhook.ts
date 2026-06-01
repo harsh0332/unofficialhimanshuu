@@ -9,7 +9,8 @@ export interface FormPayload {
     | "contact"
     | "studio-booking"
     | "event-booking"
-    | "newsletter";
+    | "newsletter"
+    | "hire";
   data: Record<string, string>;
   timestamp: string;
 }

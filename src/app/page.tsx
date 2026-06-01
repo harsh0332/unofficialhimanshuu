@@ -24,28 +24,12 @@ const InstagramReels = dynamic(() => import("@/components/sections/InstagramReel
   loading: () => <SectionPlaceholder height="600px" />,
 });
 
-const Guest = dynamic(() => import("@/components/sections/Guest"), {
-  loading: () => <SectionPlaceholder height="500px" />,
-});
-
-const Brands = dynamic(() => import("@/components/sections/Brands"), {
-  loading: () => <SectionPlaceholder height="500px" />,
-});
-
 const Clients = dynamic(() => import("@/components/sections/Clients"), {
   loading: () => <SectionPlaceholder height="120px" />,
 });
 
-const LeadForm = dynamic(() => import("@/components/sections/LeadForm"), {
-  loading: () => <SectionPlaceholder height="600px" />,
-});
-
-const BookStudio = dynamic(() => import("@/components/sections/BookStudio"), {
-  loading: () => <SectionPlaceholder height="500px" />,
-});
-
-const EventBooking = dynamic(() => import("@/components/sections/EventBooking"), {
-  loading: () => <SectionPlaceholder height="500px" />,
+const InquiryRouter = dynamic(() => import("@/components/sections/InquiryRouter"), {
+  loading: () => <SectionPlaceholder height="550px" />,
 });
 
 const WhatsAppAutomation = dynamic(() => import("@/components/sections/WhatsAppAutomation"), {
@@ -75,23 +59,11 @@ export default function Home() {
         {/* 3b. Popular Instagram Reels Hub */}
         <InstagramReels />
 
-        {/* 4. Guest Application form -> webhook type: "guest" */}
-        <Guest />
-
-        {/* 5. Sponsor / Brand Form -> webhook type: "sponsor" */}
-        <Brands />
-
         {/* 6. Sponsors / Trusted By Strip -> Oppo and Hasselblad marquees */}
         <Clients />
 
-        {/* 7. Contact System ("Let's Create Together") -> webhook type: "contact" */}
-        <LeadForm />
-
-        {/* 8. Studio Booking -> webhook type: "studio-booking" */}
-        <BookStudio />
-
-        {/* 9. Event Booking -> webhook type: "event-booking" */}
-        <EventBooking />
+        {/* 7. Smart Inquiry Router (Replaces 5 separate forms) */}
+        <InquiryRouter />
 
         {/* 10. WhatsApp Automation -> designed highlight & persist floating chat */}
         <WhatsAppAutomation />

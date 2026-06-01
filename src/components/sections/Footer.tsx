@@ -24,11 +24,11 @@ export default function Footer() {
   const footerLinks = [
     { name: "About", href: "#hero" },
     { name: "Podcast Hub", href: "#podcast" },
-    { name: "Apply Guest", href: "#guest" },
-    { name: "Sponsor Inquiry", href: "#sponsor" },
-    { name: "Studio Booking", href: "#studio-booking" },
+    { name: "Apply Guest", href: "#inquiry" },
+    { name: "Sponsor Inquiry", href: "#inquiry" },
+    { name: "Studio Booking", href: "#inquiry" },
     { name: "What's next →", href: "/roadmap" },
-    { name: "Contact System", href: "#contact" },
+    { name: "Contact System", href: "#inquiry" },
   ];
 
   return (

@@ -12,12 +12,11 @@ export default function Navbar() {
   const navLinks = [
     { name: "About", href: "#hero" },
     { name: "Podcast", href: "#podcast" },
-    { name: "Instagram", href: "#instagram" },
-    { name: "Apply", href: "#guest" },
-    { name: "Sponsor", href: "#sponsor" },
-    { name: "Booking", href: "#studio-booking" },
-    { name: "Roadmap", href: "#roadmap" },
-    { name: "Contact", href: "#contact" },
+    { name: "Apply", href: "#inquiry" },
+    { name: "Sponsor", href: "#inquiry" },
+    { name: "Booking", href: "#inquiry" },
+    { name: "What's next", href: "/roadmap" },
+    { name: "Contact", href: "#inquiry" },
   ];
 
   // Handle transparent to solid transitions on scroll

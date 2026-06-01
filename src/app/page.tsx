@@ -16,6 +16,18 @@ const SectionPlaceholder = ({ height, className = "" }: { height: string; classN
 );
 
 // Lazy below-the-fold component split loads
+const Clients = dynamic(() => import("@/components/sections/Clients"), {
+  loading: () => <SectionPlaceholder height="120px" />,
+});
+
+const Services = dynamic(() => import("@/components/sections/Services"), {
+  loading: () => <SectionPlaceholder height="450px" />,
+});
+
+const CaseStudy = dynamic(() => import("@/components/sections/CaseStudy"), {
+  loading: () => <SectionPlaceholder height="700px" />,
+});
+
 const Talks = dynamic(() => import("@/components/sections/Talks"), {
   loading: () => <SectionPlaceholder height="600px" />,
 });
@@ -24,20 +36,16 @@ const InstagramReels = dynamic(() => import("@/components/sections/InstagramReel
   loading: () => <SectionPlaceholder height="600px" />,
 });
 
-const Clients = dynamic(() => import("@/components/sections/Clients"), {
-  loading: () => <SectionPlaceholder height="120px" />,
+const Founder = dynamic(() => import("@/components/sections/Founder"), {
+  loading: () => <SectionPlaceholder height="550px" />,
 });
 
-const CaseStudy = dynamic(() => import("@/components/sections/CaseStudy"), {
-  loading: () => <SectionPlaceholder height="700px" />,
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), {
+  loading: () => <SectionPlaceholder height="400px" />,
 });
 
 const InquiryRouter = dynamic(() => import("@/components/sections/InquiryRouter"), {
   loading: () => <SectionPlaceholder height="550px" />,
-});
-
-const WhatsAppAutomation = dynamic(() => import("@/components/sections/WhatsAppAutomation"), {
-  loading: () => <SectionPlaceholder height="450px" />,
 });
 
 const Footer = dynamic(() => import("@/components/sections/Footer"), {
@@ -57,26 +65,32 @@ export default function Home() {
         {/* 2. Full-bleed cinematic Hero (Himanshu Soni Personal Brand) */}
         <Hero />
 
-        {/* 3. Podcast Hub ("The Unofficial Talks" Showcase) */}
-        <Talks />
-
-        {/* 3b. Popular Instagram Reels Hub */}
-        <InstagramReels />
-
-        {/* 6. Sponsors / Trusted By Strip -> Oppo and Hasselblad marquees */}
+        {/* 3. Sponsors / Trusted By Strip -> Oppo and Hasselblad marquees */}
         <Clients />
 
-        {/* Flagship Cinematic Case Study (Zenagi Coffee) */}
+        {/* 4. Services Arsenal (Consolidated 3 services) */}
+        <Services />
+
+        {/* 5. Flagship Cinematic Case Study (Zenagi Coffee) */}
         <CaseStudy />
 
-        {/* 7. Smart Inquiry Router (Replaces 5 separate forms) */}
-        <InquiryRouter />
+        {/* 6. Podcast Hub ("The Unofficial Talks" Showcase) */}
+        <Talks />
 
-        {/* 10. WhatsApp Automation -> designed highlight & persist floating chat */}
-        <WhatsAppAutomation />
+        {/* 7. Popular Instagram Reels Hub */}
+        <InstagramReels />
+
+        {/* 8. Founder Credibility Profile (Himanshu Soni) */}
+        <Founder />
+
+        {/* 9. Brand Testimonials */}
+        <Testimonials />
+
+        {/* 10. Smart Inquiry Router (Replaces 5 separate forms) */}
+        <InquiryRouter />
       </main>
 
-      {/* 17. Stark Footer & Persistent WhatsApp Floating trigger */}
+      {/* 11. Stark Footer & Persistent WhatsApp Floating trigger */}
       <Footer />
     </div>
   );

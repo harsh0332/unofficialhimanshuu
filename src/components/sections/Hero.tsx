@@ -9,7 +9,7 @@ import { getWhatsAppLink } from "@/lib/whatsapp";
 
 // --- EDITABLE HERO CONSTANTS ---
 const HERO_H1 = "India's brand stories, told cinematically — from Indore.";
-const HERO_SUBHEAD = "A production studio for founders, D2C brands and agencies who want podcasts, reels and films that actually convert. Built by a 207K-creator who knows what travels.";
+const HERO_SUBHEAD = "A production studio for founders, D2C brands and agencies who want podcasts, reels and films that actually convert. Led by creator-driven insights that understand what travels.";
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -75,20 +75,9 @@ export default function Hero() {
                 The Unofficial Studios
               </span>
               <span className="text-white/20 font-inter text-[9px]">|</span>
-              <a
-                href="https://instagram.com/unofficialhimanshu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-inter font-bold text-[9px] uppercase tracking-widest text-brand-bone hover:text-brand-ember transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
-              >
-                <span>@unofficialhimanshu</span>
-                <span className="font-inter text-brand-ember font-extrabold flex items-center gap-1">
-                  207K+ creator audience
-                  <svg className="w-3 h-3 text-brand-ember fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12.002 2.005c-5.522 0-10 4.478-10 10s4.478 10 10 10 10-4.478 10-10-4.478-10-10-10zm4.5 7.5l-5.5 5.5-2.5-2.5c-.387-.387-.387-1.013 0-1.4s1.013-.387 1.4 0l1.1 1.1 4.1-4.1c.387-.387 1.013-.387 1.4 0s.387 1.013 0 1.4z" />
-                  </svg>
-                </span>
-              </a>
+              <span className="font-inter font-bold text-[9px] uppercase tracking-widest text-brand-bone">
+                Indore, India
+              </span>
             </motion.div>
 
             {/* Outcome-Led Main Title H1 - One clean mask reveal */}

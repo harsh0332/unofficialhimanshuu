@@ -186,7 +186,13 @@ export default function Talks() {
                     {ep.guest} — {ep.role}
                   </span>
                   <h3 className="font-fraunces font-extrabold text-md md:text-lg uppercase tracking-wider text-brand-bone leading-snug group-hover:text-brand-ember transition-colors duration-300">
-                    {ep.title}
+                    {ep.title.includes("Kyu") ? (
+                      <>
+                        <span lang="hi">5G Kyu Slow Lagta Hai?</span> | Lease Line vs Normal Internet
+                      </>
+                    ) : (
+                      ep.title
+                    )}
                   </h3>
                 </div>
 

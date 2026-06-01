@@ -30,13 +30,13 @@ export default function Button({
 
   const variantStyles = {
     primary:
-      "bg-brand-ember text-brand-ink hover:bg-brand-ember-deep shadow-[0_0_15px_rgba(226,73,46,0.20)] hover:shadow-[0_0_25px_rgba(226,73,46,0.40)]",
+      "bg-brand-ember text-brand-bone hover:bg-brand-ember-deep shadow-[0_0_15px_rgba(226,73,46,0.20)] hover:shadow-[0_0_25px_rgba(226,73,46,0.40)]",
     secondary:
       "bg-brand-bone text-brand-ink hover:bg-transparent hover:text-brand-bone border border-brand-bone hover:border-brand-ember",
     outline:
       "bg-transparent text-brand-bone border border-brand-ember/30 hover:border-brand-ember hover:bg-brand-ember/5",
     ghost:
-      "bg-transparent text-brand-bone hover:text-brand-ember",
+      "bg-transparent text-brand-bone hover:text-brand-ember-bright",
   };
 
   const buttonContent = (

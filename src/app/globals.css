@@ -7,6 +7,7 @@
   --color-brand-ember: #E2492E;
   --color-brand-ember-deep: #B83A24;
   --color-brand-ember-glow: rgba(226, 73, 46, 0.20);
+  --color-brand-ember-bright: #FF5B3E;
   --color-brand-bone: #F2EFE9;
   --color-brand-bone-secondary: #B4B0A8;
   --color-brand-bone-muted: #6F6B63;
@@ -91,6 +92,19 @@ body {
 
 /* Focus and accessibility styles */
 *:focus-visible {
-  outline: 2px solid #E2492E;
-  outline-offset: 2px;
+  outline: 2px solid var(--color-brand-ember-bright) !important;
+  outline-offset: 2px !important;
+}
+
+/* Global Prefers Reduced Motion WCAG Compliance Safeguard */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
 }

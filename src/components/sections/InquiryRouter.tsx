@@ -365,12 +365,13 @@ export default function InquiryRouter() {
                       <div className="flex flex-col gap-2">
                         <label htmlFor="inquiry-name" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                           <span>Full Name <span className="text-brand-ember">*</span></span>
-                          {errors.name && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.name}</span>}
+                          {errors.name && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.name}</span>}
                         </label>
                         <input
                           id="inquiry-name"
                           type="text"
                           required
+                          autoComplete="name"
                           placeholder="Himanshu Soni"
                           value={formData.name}
                           onChange={(e) => {
@@ -387,12 +388,13 @@ export default function InquiryRouter() {
                       <div className="flex flex-col gap-2">
                         <label htmlFor="inquiry-email" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                           <span>Business Email <span className="text-brand-ember">*</span></span>
-                          {errors.email && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.email}</span>}
+                          {errors.email && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.email}</span>}
                         </label>
                         <input
                           id="inquiry-email"
                           type="email"
                           required
+                          autoComplete="email"
                           placeholder="name@email.com"
                           value={formData.email}
                           onChange={(e) => {
@@ -409,12 +411,13 @@ export default function InquiryRouter() {
                       <div className="flex flex-col gap-2">
                         <label htmlFor="inquiry-phone" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                           <span>Phone Number (India Format) <span className="text-brand-ember">*</span></span>
-                          {errors.phone && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.phone}</span>}
+                          {errors.phone && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.phone}</span>}
                         </label>
                         <input
                           id="inquiry-phone"
                           type="tel"
                           required
+                          autoComplete="tel"
                           placeholder="+91 98765 43210"
                           value={formData.phone}
                           onChange={(e) => {
@@ -439,7 +442,7 @@ export default function InquiryRouter() {
                           <div className="flex flex-col gap-2">
                             <label htmlFor="inquiry-projectType" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                               <span>Project Type <span className="text-brand-ember">*</span></span>
-                              {errors.projectType && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.projectType}</span>}
+                              {errors.projectType && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.projectType}</span>}
                             </label>
                             <div className="relative">
                               <select
@@ -472,7 +475,7 @@ export default function InquiryRouter() {
                           <div className="flex flex-col gap-2">
                             <label htmlFor="inquiry-hireBudget" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                               <span>Estimated Budget <span className="text-brand-ember">*</span></span>
-                              {errors.hireBudget && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.hireBudget}</span>}
+                              {errors.hireBudget && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.hireBudget}</span>}
                             </label>
                             <div className="relative">
                               <select
@@ -510,12 +513,13 @@ export default function InquiryRouter() {
                           <div className="flex flex-col gap-2">
                             <label htmlFor="inquiry-profession" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                               <span>What you do (Founder, Creator, Disruptor) <span className="text-brand-ember">*</span></span>
-                              {errors.profession && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.profession}</span>}
+                              {errors.profession && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.profession}</span>}
                             </label>
                             <input
                               id="inquiry-profession"
                               type="text"
                               required
+                              autoComplete="organization-title"
                               placeholder="D2C Brand Founder"
                               value={formData.profession}
                               onChange={(e) => {
@@ -532,12 +536,13 @@ export default function InquiryRouter() {
                           <div className="flex flex-col gap-2">
                             <label htmlFor="inquiry-social" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                               <span>Instagram or LinkedIn Handle <span className="text-brand-ember">*</span></span>
-                              {errors.socialHandle && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.socialHandle}</span>}
+                              {errors.socialHandle && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.socialHandle}</span>}
                             </label>
                             <input
                               id="inquiry-social"
                               type="text"
                               required
+                              autoComplete="username"
                               placeholder="@unofficialhimanshu"
                               value={formData.socialHandle}
                               onChange={(e) => {
@@ -559,12 +564,13 @@ export default function InquiryRouter() {
                           <div className="flex flex-col gap-2">
                             <label htmlFor="inquiry-brandName" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                               <span>Brand / Company Name <span className="text-brand-ember">*</span></span>
-                              {errors.brandName && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.brandName}</span>}
+                              {errors.brandName && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.brandName}</span>}
                             </label>
                             <input
                               id="inquiry-brandName"
                               type="text"
                               required
+                              autoComplete="organization"
                               placeholder="Indore D2C Inc."
                               value={formData.brandName}
                               onChange={(e) => {
@@ -581,7 +587,7 @@ export default function InquiryRouter() {
                           <div className="flex flex-col gap-2">
                             <label htmlFor="inquiry-sponsorBudget" className="font-inter font-bold uppercase tracking-wider text-[10px] text-brand-bone-secondary flex justify-between items-center">
                               <span>Collaboration Budget <span className="text-brand-ember">*</span></span>
-                              {errors.sponsorBudget && <span className="text-brand-ember text-[9px] font-inter tracking-normal normal-case font-medium">{errors.sponsorBudget}</span>}
+                              {errors.sponsorBudget && <span className="text-brand-ember-bright text-[9px] font-inter tracking-normal normal-case font-medium" aria-live="polite">{errors.sponsorBudget}</span>}
                             </label>
                             <div className="relative">
                               <select

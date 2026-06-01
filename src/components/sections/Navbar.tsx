@@ -2,19 +2,22 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Button from "../ui/Button";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const pathname = usePathname() || "/";
 
   const navLinks = [
-    { name: "Work", href: "#work" },
-    { name: "Services", href: "#services" },
-    { name: "Talks", href: "#talks" },
-    { name: "Reels", href: "#reels" },
-    { name: "Contact", href: "#inquiry" },
+    { name: "Work", href: pathname === "/" ? "#work" : "/work" },
+    { name: "Services", href: pathname === "/" ? "#services" : "/#services" },
+    { name: "Talks", href: pathname === "/" ? "#talks" : "/podcast" },
+    { name: "Reels", href: pathname === "/" ? "#reels" : "/#reels" },
+    { name: "Contact", href: pathname === "/" ? "#inquiry" : "/contact" },
   ];
 
   // Handle transparent to solid transitions on scroll
@@ -31,9 +34,29 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle active section tracking on scroll
+  // Handle active section tracking on scroll or route changes
   useEffect(() => {
-    const sections = navLinks.map((link) => document.querySelector(link.href));
+    if (pathname !== "/") {
+      if (pathname.startsWith("/work")) {
+        setActiveSection("work");
+      } else if (pathname.startsWith("/podcast")) {
+        setActiveSection("talks");
+      } else if (pathname.startsWith("/contact")) {
+        setActiveSection("inquiry");
+      } else {
+        setActiveSection("");
+      }
+      return;
+    }
+
+    const targetHashes = ["#work", "#services", "#talks", "#reels", "#inquiry"];
+    const sections = targetHashes.map((hash) => {
+      try {
+        return document.querySelector(hash);
+      } catch (e) {
+        return null;
+      }
+    });
 
     const observerOptions = {
       root: null,
@@ -58,7 +81,7 @@ export default function Navbar() {
         if (section) observer.unobserve(section);
       });
     };
-  }, []);
+  }, [pathname]);
 
   // Lock background scroll when mobile sidebar is open
   useEffect(() => {
@@ -124,6 +147,10 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
+  const getActiveKey = (name: string) => {
+    return name === "Contact" ? "inquiry" : name.toLowerCase();
+  };
+
   return (
     <>
       <header
@@ -135,22 +162,22 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex items-center justify-between gap-4 xl:gap-8">
           {/* Logo */}
-          <a
-            href="#"
+          <Link
+            href="/"
             className="font-fraunces font-extrabold text-[15px] xs:text-base sm:text-lg md:text-xl tracking-tight uppercase flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
             aria-label="The Unofficial Studios Home"
           >
             <span className="text-brand-bone">The</span>
             <span className="text-brand-ember">Unofficial</span>
             <span className="text-brand-bone">Studios</span>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <nav className="hidden xl:flex items-center gap-4 xl:gap-5 2xl:gap-8" aria-label="Desktop navigation">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
+              const isActive = activeSection === getActiveKey(link.name);
               return (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className={`font-inter text-[11px] 2xl:text-xs uppercase tracking-wider transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-1.5 2xl:px-2 py-1 ${
@@ -158,14 +185,14 @@ export default function Navbar() {
                   }`}
                 >
                   {link.name}
-                </a>
+                </Link>
               );
             })}
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden xl:block">
-            <Button href="#inquiry" variant="primary">
+            <Button href={pathname === "/" ? "#inquiry" : "/contact"} variant="primary">
               Hire the Studio
             </Button>
           </div>
@@ -212,9 +239,9 @@ export default function Navbar() {
 
         <nav className="relative z-10 flex flex-col items-center gap-8 text-center pt-8" aria-label="Mobile navigation">
           {navLinks.map((link, idx) => {
-            const isActive = activeSection === link.href.substring(1);
+            const isActive = activeSection === getActiveKey(link.name);
             return (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -229,7 +256,7 @@ export default function Navbar() {
                 }}
               >
                 {link.name}
-              </a>
+              </Link>
             );
           })}
           <div
@@ -242,7 +269,7 @@ export default function Navbar() {
             }}
           >
             <Button
-              href="#inquiry"
+              href={pathname === "/" ? "#inquiry" : "/contact"}
               variant="primary"
               onClick={() => setIsMobileMenuOpen(false)}
               className="min-h-[44px] px-8"

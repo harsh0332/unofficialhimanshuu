@@ -2,6 +2,8 @@
 
 import React from "react";
 import { Mail, MessageCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import NewsletterSignup from "../ui/NewsletterSignup";
 
 // Custom inline brand SVGs for perfect compiler safety and lightweight footprint
@@ -15,6 +17,7 @@ const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname() || "/";
 
   // WhatsApp click-to-chat environment variable fallback
   const whatsappUrl =
@@ -22,13 +25,13 @@ export default function Footer() {
     "https://wa.me/918827736537?text=Hi%20The%20Unofficial%20Studios,%20I'd%20like%20to%20collaborate!";
 
   const footerLinks = [
-    { name: "About", href: "#hero" },
-    { name: "Podcast Hub", href: "#talks" },
-    { name: "Apply Guest", href: "#inquiry" },
-    { name: "Sponsor Inquiry", href: "#inquiry" },
-    { name: "Studio Booking", href: "#inquiry" },
+    { name: "About", href: pathname === "/" ? "#hero" : "/#hero" },
+    { name: "Podcast Hub", href: pathname === "/" ? "#talks" : "/podcast" },
+    { name: "Apply Guest", href: pathname === "/" ? "#inquiry" : "/contact" },
+    { name: "Sponsor Inquiry", href: pathname === "/" ? "#inquiry" : "/contact" },
+    { name: "Studio Booking", href: pathname === "/" ? "#inquiry" : "/contact" },
     { name: "What's next →", href: "/roadmap" },
-    { name: "Contact System", href: "#inquiry" },
+    { name: "Contact System", href: pathname === "/" ? "#inquiry" : "/contact" },
   ];
 
   return (
@@ -55,15 +58,15 @@ export default function Footer() {
           
           {/* Logo / Brand Name */}
           <div className="flex flex-col gap-2">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="font-fraunces font-extrabold text-md md:text-lg uppercase tracking-tight flex justify-center lg:justify-start items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-1"
               aria-label="The Unofficial Studios Home"
             >
               <span className="text-brand-bone">The</span>
               <span className="text-brand-ember">Unofficial</span>
               <span className="text-brand-bone">Studios</span>
-            </a>
+            </Link>
             <span className="font-inter text-xxs text-brand-bone-muted uppercase tracking-widest">
               Indore, India — Cinematic Media Headquarters
             </span>
@@ -72,13 +75,13 @@ export default function Footer() {
           {/* Footer Anchors navigation */}
           <nav className="flex items-center gap-6 md:gap-8 flex-wrap justify-center" aria-label="Footer Navigation">
             {footerLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 className="font-inter text-xs uppercase tracking-wider text-brand-bone-secondary hover:text-brand-ember transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 

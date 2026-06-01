@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { Sparkles, ChevronDown, Camera, Film, Users, CheckCircle2 } from "lucide-react";
+import { Sparkles, ChevronDown, Camera, Film } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 // --- EDITABLE PORTFOLIO CONSTANTS (Zenagi Coffee Campaign) ---
@@ -24,7 +24,12 @@ const CASE_STUDY = {
     { src: "/collab1.jpg", caption: "Atmospheric Lighting Setup" },
     { src: "/collab2.jpg", caption: "Macro Close-Up Roaster Capture" },
     { src: "/collab3.jpg", caption: "Behind-the-Scenes Monitoring" }
-  ]
+  ],
+  backstage: {
+    technicalBreakdown: "Shot entirely on location in Indore using RED Cine cameras & anamorphic prime lenses. Calibrated ambient warm lighting to sync cleanly with the roasting steam, preserving organic bean textures in a 60fps dynamic container.",
+    designRationale: "We avoided generic product shots, focusing instead on macro roasting sensory cues and artisanal bean-to-cup movement to create an editorial, premium cafe aura.",
+    challengesSolutions: "The cafe has mixed lighting. We controlled visual spill by flag-mounting diffuse key lights and color grading natively matching the brand's Ink & Bone aesthetic.",
+  }
 };
 
 export default function CaseStudy() {
@@ -33,6 +38,13 @@ export default function CaseStudy() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const shouldReduceMotion = useReducedMotion();
+
+  // Filter filled backstage sub-blocks dynamically to guarantee only active notes render
+  const backstageBlocks = [
+    { label: "Technical Breakdown", content: CASE_STUDY.backstage?.technicalBreakdown },
+    { label: "Design Rationale", content: CASE_STUDY.backstage?.designRationale },
+    { label: "Challenges & Solutions", content: CASE_STUDY.backstage?.challengesSolutions }
+  ].filter(block => !!block.content);
 
   // IntersectionObserver to lazy-load video element only on viewport intersect
   useEffect(() => {
@@ -170,8 +182,9 @@ export default function CaseStudy() {
             <div className="border border-brand-border-hairline bg-brand-ink/40 p-5 rounded-none">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between font-inter font-bold text-[10px] uppercase tracking-widest text-brand-bone hover:text-brand-ember transition-colors py-2 focus:outline-none cursor-pointer"
+                className="w-full flex items-center justify-between font-inter font-bold text-[10px] uppercase tracking-widest text-brand-bone hover:text-brand-ember transition-colors py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember-bright cursor-pointer"
                 aria-expanded={isOpen}
+                aria-controls="backstage-content"
               >
                 <span className="flex items-center gap-2">
                   <Camera size={12} className="text-brand-ember" />
@@ -183,22 +196,33 @@ export default function CaseStudy() {
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
+                    id="backstage-content"
+                    initial={shouldReduceMotion ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    exit={shouldReduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
+                    transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.4, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="pt-5 flex flex-col gap-5 border-t border-brand-border-hairline mt-4">
-                      <p className="text-xxs leading-relaxed text-brand-bone-secondary font-mono">
-                        // PRODUCTION LOGS:<br />
-                        Shot entirely on location in Indore using RED Cine cameras & anamorphic prime lenses. 
-                        We calibrated ambient warm lighting setups to sync cleanly with the steam and espresso machines, 
-                        preserving organic textures in a 60fps dynamic visual container.
-                      </p>
+                    <div className="pt-5 flex flex-col gap-6 border-t border-brand-border-hairline mt-4">
+                      
+                      {/* Sub-blocks listed vertically, rendering only filled items */}
+                      {backstageBlocks.length > 0 && (
+                        <div className="flex flex-col gap-5">
+                          {backstageBlocks.map((block, idx) => (
+                            <div key={idx} className="flex flex-col gap-1.5 text-left border-l border-brand-border-accent pl-4">
+                              <span className="font-mono text-[8px] uppercase tracking-widest text-brand-ember-bright font-bold">
+                                // {block.label}
+                              </span>
+                              <p className="font-inter text-xs leading-relaxed text-brand-bone-secondary">
+                                {block.content}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
 
                       {/* Behind the scenes stills */}
-                      <div className="grid grid-cols-3 gap-3">
+                      <div className="grid grid-cols-3 gap-3 border-t border-brand-border-hairline pt-5 mt-2">
                         {CASE_STUDY.stills.map((still, idx) => (
                           <div key={idx} className="flex flex-col gap-1.5 group">
                             <div className="relative aspect-[4/3] w-full overflow-hidden border border-brand-border-hairline bg-brand-card">

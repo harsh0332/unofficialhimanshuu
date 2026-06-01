@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useReducedMotion } from "framer-motion";
 
 export default function HeroVideo() {
@@ -12,6 +13,7 @@ export default function HeroVideo() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isTabVisible, setIsTabVisible] = useState(true);
+  const [hasIntersected, setHasIntersected] = useState(false);
 
   // Run environmental check to confirm if loading the video is safe
   useEffect(() => {
@@ -78,10 +80,21 @@ export default function HeroVideo() {
     return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
 
+  // Defer video element loading until after page has fully painted (LCP protector)
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    
+    const timer = setTimeout(() => {
+      setHasIntersected(true);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [shouldReduceMotion]);
+
   // Trigger HTML5 play/pause methods based on screen/tab visibility
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !canPlayVideo) return;
+    if (!video || !canPlayVideo || !hasIntersected) return;
 
     if (isVisible && isTabVisible) {
       video.play().catch((err) => {
@@ -90,25 +103,28 @@ export default function HeroVideo() {
     } else {
       video.pause();
     }
-  }, [isVisible, isTabVisible, canPlayVideo]);
+  }, [isVisible, isTabVisible, canPlayVideo, hasIntersected]);
 
   return (
     <div
       ref={containerRef}
       className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0 select-none"
     >
-      {/* 1. Static Poster Image (object-cover centered) */}
-      <img
+      {/* 1. Next.js Priority Preloaded Poster Image */}
+      <Image
         src="/hero-poster.jpg"
         alt="The Unofficial Studios Cinematic Backdrop Fallback"
+        fill
+        priority
+        sizes="100vw"
         className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-10 transition-opacity duration-1000"
         style={{
-          opacity: videoLoaded && canPlayVideo ? 0 : 1,
+          opacity: videoLoaded && canPlayVideo && hasIntersected ? 0 : 1,
         }}
       />
 
-      {/* 2. Premium loop video element (H.264/VP9 sources) */}
-      {canPlayVideo && (
+      {/* 2. Premium loop video element (H.264/VP9 sources) - Lazy mounted after 1500ms */}
+      {canPlayVideo && hasIntersected && (
         <video
           ref={videoRef}
           muted
@@ -129,7 +145,7 @@ export default function HeroVideo() {
         </video>
       )}
 
-      {/* 3. Dark gradient overlay + vignette blend to guarantee WCAG AA text contrast */}
+      {/* 3. Dark gradient overlay + vignette blend to guarantee text contrast */}
       <div 
         className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-t from-brand-ink via-brand-ink/75 to-brand-ink/35"
       />

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/sections/Navbar";
@@ -15,44 +17,54 @@ const SectionPlaceholder = ({ height, className = "" }: { height: string; classN
   </div>
 );
 
-// Lazy below-the-fold component split loads
+// Lazy below-the-fold client-side only component loads (ssr: false, CLS-safe placeholders)
 const Clients = dynamic(() => import("@/components/sections/Clients"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="120px" />,
 });
 
 const Services = dynamic(() => import("@/components/sections/Services"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="450px" />,
 });
 
 const CaseStudy = dynamic(() => import("@/components/sections/CaseStudy"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="700px" />,
 });
 
 const Talks = dynamic(() => import("@/components/sections/Talks"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="600px" />,
 });
 
 const InstagramReels = dynamic(() => import("@/components/sections/InstagramReels"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="600px" />,
 });
 
 const Founder = dynamic(() => import("@/components/sections/Founder"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="550px" />,
 });
 
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="400px" />,
 });
 
 const InquiryRouter = dynamic(() => import("@/components/sections/InquiryRouter"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="550px" />,
 });
 
 const MobileCTABar = dynamic(() => import("@/components/sections/MobileCTABar"), {
+  ssr: false,
   loading: () => null,
 });
 
 const Footer = dynamic(() => import("@/components/sections/Footer"), {
+  ssr: false,
   loading: () => <SectionPlaceholder height="250px" />,
 });
 

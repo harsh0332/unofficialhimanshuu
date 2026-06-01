@@ -123,7 +123,7 @@ export default function Hero() {
               variants={textVariants}
               className="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full sm:w-auto"
             >
-              <Button href="#contact" variant="primary" className="w-full sm:w-auto min-h-[44px]">
+              <Button href="#inquiry" variant="primary" className="w-full sm:w-auto min-h-[44px]">
                 Hire the Studio
               </Button>
               <a
@@ -162,6 +162,7 @@ export default function Hero() {
                   fill
                   sizes="(max-width: 768px) 100vw, 300px"
                   priority
+                  fetchPriority="high"
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-103"
                 />
               </div>

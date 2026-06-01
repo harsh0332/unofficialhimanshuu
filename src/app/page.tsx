@@ -28,6 +28,10 @@ const Clients = dynamic(() => import("@/components/sections/Clients"), {
   loading: () => <SectionPlaceholder height="120px" />,
 });
 
+const CaseStudy = dynamic(() => import("@/components/sections/CaseStudy"), {
+  loading: () => <SectionPlaceholder height="700px" />,
+});
+
 const InquiryRouter = dynamic(() => import("@/components/sections/InquiryRouter"), {
   loading: () => <SectionPlaceholder height="550px" />,
 });
@@ -61,6 +65,9 @@ export default function Home() {
 
         {/* 6. Sponsors / Trusted By Strip -> Oppo and Hasselblad marquees */}
         <Clients />
+
+        {/* Flagship Cinematic Case Study (Zenagi Coffee) */}
+        <CaseStudy />
 
         {/* 7. Smart Inquiry Router (Replaces 5 separate forms) */}
         <InquiryRouter />

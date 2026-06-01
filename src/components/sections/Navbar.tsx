@@ -12,6 +12,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "About", href: "#hero" },
     { name: "Podcast", href: "#podcast" },
+    { name: "Work", href: "#work" },
     { name: "Apply", href: "#inquiry" },
     { name: "Sponsor", href: "#inquiry" },
     { name: "Booking", href: "#inquiry" },
@@ -115,7 +116,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden xl:block">
-            <Button href="#contact" variant="primary">
+            <Button href="#inquiry" variant="primary">
               Get In Touch
             </Button>
           </div>
@@ -175,7 +176,7 @@ export default function Navbar() {
             }}
           >
             <Button
-              href="#contact"
+              href="#inquiry"
               variant="primary"
               onClick={() => setIsMobileMenuOpen(false)}
             >

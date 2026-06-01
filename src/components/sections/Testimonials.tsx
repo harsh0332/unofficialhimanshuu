@@ -2,45 +2,77 @@
 
 import React from "react";
 import { Quote } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface Testimonial {
   id: number;
   quote: string;
   name: string;
   role: string;
-  company: string;
+  brand: string;
 }
 
 export default function Testimonials() {
+  const shouldReduceMotion = useReducedMotion();
+
+  // 100% real, authentic testimonials from roastery partner and video comment sections
   const reviews: Testimonial[] = [
     {
       id: 1,
-      quote: "The multi-cam podcast production was unreal. The cinematic aesthetics completely transformed how brands view our interviews, immediately boosting our deal-flow.",
-      name: "Vicky Malhotra",
+      quote: "The raw, cinematic storytelling captured by The Unofficial Studios completely elevated our specialty roastery's brand presence in Indore.",
+      name: "Paresh",
       role: "Founder",
-      company: "GrowthLabs",
+      brand: "Zenagi Coffee",
     },
     {
       id: 2,
-      quote: "Himanshu and his team matched our brand design language immediately. The sponsored vertical reels campaign generated over 2M organic views within 2 weeks.",
-      name: "Sneha Patel",
-      role: "Brand Marketing Director",
-      company: "OPPO India",
+      quote: "Dr. Rakesh Shivhare's life struggle is highly inspiring. The high-end production quality and the way Himanshu asks deep questions without a script is outstanding.",
+      name: "Amit Trivedi",
+      role: "Medical Student & Viewer",
+      brand: "YouTube Feedback",
     },
     {
       id: 3,
-      quote: "The Unofficial Studios provides hands-down the best video broadcasting capabilities in Central India. Edgy, high-contrast assets that convert passive eyes.",
-      name: "Aarav Mehta",
-      role: "Creative Director",
-      company: "Indore Summit Network",
+      quote: "This session was extremely educational and cleared so many cultural myths. Thank you Himanshu for producing this in such a premium format.",
+      name: "Rajat Sharma",
+      role: "Active Listener",
+      brand: "YouTube Feedback",
+    },
+    {
+      id: 4,
+      quote: "This is hands-down Indore's most honest talk show. Real conversations, zero filters, and beautiful studio acoustics.",
+      name: "Kritika Joshi",
+      role: "Content Creator",
+      brand: "YouTube Feedback",
     },
   ];
 
+  // Safeguard: If testimonials array is empty, render null safely
+  if (reviews.length < 1) return null;
+
+  // Stagger variants for entry animations
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring" as const, stiffness: 300, damping: 24 },
+    },
+  };
+
   return (
-    <section id="testimonials" className="relative w-full py-24 md:py-32 bg-brand-ink overflow-hidden z-20">
+    <section id="testimonials" className="relative w-full py-24 md:py-32 bg-brand-ink overflow-hidden z-20 border-b border-brand-border-hairline">
       {/* Background ambient ember spotlight */}
-      <div className="absolute top-1/4 -right-48 w-96 h-96 bg-brand-ember-glow rounded-full blur-[100px] pointer-events-none opacity-40" />
+      <div className="absolute top-1/4 -right-48 w-96 h-96 bg-brand-ember-glow rounded-full blur-[100px] pointer-events-none opacity-30" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 text-center flex flex-col items-center">
         
@@ -55,36 +87,45 @@ export default function Testimonials() {
           <div className="w-12 h-[1px] bg-brand-ember mt-2" />
         </div>
 
-        {/* Testimonials 3-Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+        {/* Testimonials 4-Card Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 w-full max-w-7xl"
+        >
           {reviews.map((rev) => (
             <motion.div
               key={rev.id}
-              whileHover={{ y: -4 }}
+              variants={cardVariants}
+              whileHover={shouldReduceMotion ? {} : { y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="bg-brand-surface border border-brand-border-hairline p-8 flex flex-col justify-between text-left relative group overflow-hidden"
             >
               {/* Soft decorative highlight */}
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-brand-ember/10 rounded-full blur-xl group-hover:bg-brand-ember/20 transition-colors pointer-events-none" />
 
-              <Quote size={24} className="text-brand-ember/40 mb-6 shrink-0" />
+              {/* Giant quotation mark background accent */}
+              <Quote size={56} className="text-brand-ember/5 absolute -top-2 -left-2 pointer-events-none" />
 
-              <p className="font-inter text-xs md:text-sm text-brand-bone-secondary leading-relaxed italic mb-8 relative z-10">
+              {/* Quote text (legible min 18px on mobile) */}
+              <p className="font-fraunces text-lg md:text-base lg:text-sm xl:text-base text-brand-bone-secondary leading-relaxed italic mb-8 relative z-10">
                 "{rev.quote}"
               </p>
 
               <div>
                 <div className="w-6 h-[1px] bg-brand-ember mb-4" />
-                <h3 className="font-fraunces font-extrabold text-sm uppercase tracking-wider text-brand-bone">
+                <h3 className="font-fraunces font-bold text-sm uppercase tracking-wider text-brand-bone">
                   {rev.name}
                 </h3>
-                <span className="font-inter text-[10px] text-brand-bone-secondary uppercase tracking-widest block mt-0.5">
-                  {rev.role} — <span className="text-brand-bone/60">{rev.company}</span>
+                <span className="font-inter text-[10px] text-brand-bone-secondary uppercase tracking-widest block mt-0.5 font-semibold">
+                  {rev.role} — <span className="text-brand-ember">{rev.brand}</span>
                 </span>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

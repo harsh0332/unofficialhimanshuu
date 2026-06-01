@@ -23,7 +23,7 @@ export default function Footer() {
 
   const footerLinks = [
     { name: "About", href: "#hero" },
-    { name: "Podcast Hub", href: "#podcast" },
+    { name: "Podcast Hub", href: "#talks" },
     { name: "Apply Guest", href: "#inquiry" },
     { name: "Sponsor Inquiry", href: "#inquiry" },
     { name: "Studio Booking", href: "#inquiry" },

@@ -114,7 +114,7 @@ export default function InstagramReels() {
 
   return (
     <section
-      id="instagram"
+      id="reels"
       className="relative w-full py-24 md:py-32 bg-brand-surface border-b border-brand-border-hairline overflow-hidden z-20"
     >
       {/* Background Cinematic Spot Glow */}

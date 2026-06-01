@@ -92,7 +92,7 @@ export default function Talks() {
 
   return (
     <section
-      id="podcast"
+      id="talks"
       className="relative w-full py-24 md:py-32 bg-brand-ink overflow-hidden z-20 border-b border-brand-border-hairline"
     >
       {/* Cinematic overlay light on right */}

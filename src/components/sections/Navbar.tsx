@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import Button from "../ui/Button";
 
@@ -10,13 +10,11 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
 
   const navLinks = [
-    { name: "About", href: "#hero" },
-    { name: "Services", href: "#services" },
     { name: "Work", href: "#work" },
-    { name: "Podcast", href: "#podcast" },
-    { name: "Founder", href: "#founder" },
-    { name: "Reviews", href: "#testimonials" },
-    { name: "Apply", href: "#inquiry" },
+    { name: "Services", href: "#services" },
+    { name: "Talks", href: "#talks" },
+    { name: "Reels", href: "#reels" },
+    { name: "Contact", href: "#inquiry" },
   ];
 
   // Handle transparent to solid transitions on scroll
@@ -74,6 +72,58 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
+  // Escape key to close mobile menu
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Focus trap inside Mobile Menu Overlay
+  const overlayRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    const focusableElements = overlay.querySelectorAll<HTMLElement>(
+      'a[href], button, [tabindex="0"]'
+    );
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    const handleFocusTrap = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    // Set focus on open
+    firstElement.focus();
+
+    overlay.addEventListener("keydown", handleFocusTrap);
+    return () => {
+      overlay.removeEventListener("keydown", handleFocusTrap);
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <header
@@ -116,15 +166,16 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden xl:block">
             <Button href="#inquiry" variant="primary">
-              Get In Touch
+              Hire the Studio
             </Button>
           </div>
 
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="xl:hidden p-2 text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
+            className="xl:hidden p-2 text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink min-h-[44px] min-w-[44px]"
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -134,6 +185,11 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
+        id="mobile-menu"
+        ref={overlayRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation Menu"
         className={`fixed inset-0 z-40 bg-brand-ink flex flex-col justify-start sm:justify-center items-center overflow-y-auto py-16 sm:py-8 transition-all duration-500 ease-in-out xl:hidden ${
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto"
@@ -143,7 +199,18 @@ export default function Navbar() {
         {/* Subtle ember radial glow for mobile overlay */}
         <div className="absolute inset-0 radial-glow opacity-20 pointer-events-none" />
 
-        <nav className="relative z-10 flex flex-col items-center gap-8 text-center" aria-label="Mobile navigation">
+        {/* Header Close button in mobile menu for keyboard tab index trap fallback */}
+        <div className="absolute top-4 right-4 z-50">
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="p-2 text-brand-bone hover:text-brand-ember transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember min-h-[44px] min-w-[44px]"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <nav className="relative z-10 flex flex-col items-center gap-8 text-center pt-8" aria-label="Mobile navigation">
           {navLinks.map((link, idx) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -151,7 +218,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`font-fraunces font-bold text-xl md:text-2xl uppercase tracking-widest transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-4 py-2 ${
+                className={`font-fraunces font-bold text-xl md:text-2xl uppercase tracking-widest transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-6 py-3 min-h-[48px] flex items-center justify-center ${
                   isActive ? "text-brand-ember" : "text-brand-bone-secondary hover:text-brand-bone"
                 }`}
                 style={{
@@ -178,8 +245,9 @@ export default function Navbar() {
               href="#inquiry"
               variant="primary"
               onClick={() => setIsMobileMenuOpen(false)}
+              className="min-h-[44px] px-8"
             >
-              Get In Touch
+              Hire the Studio
             </Button>
           </div>
         </nav>

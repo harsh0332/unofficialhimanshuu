@@ -32,119 +32,100 @@ export default function Footer() {
   ];
 
   return (
-    <>
-      <footer className="relative w-full bg-brand-ink border-t border-brand-border-hairline pt-16 pb-28 md:py-16 overflow-hidden z-20 font-inter">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col w-full gap-12">
-          
-          {/* Top Row: Newsletter Signup */}
-          <div className="border-b border-brand-border-hairline pb-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 w-full">
-            <div className="max-w-md text-left">
-              <h3 className="font-fraunces font-extrabold text-lg md:text-xl uppercase tracking-wider text-brand-bone">
-                Newsletter Insights
-              </h3>
-              <p className="font-inter text-xs text-brand-bone-secondary leading-relaxed mt-1">
-                Receive unreleased creator algorithms, camera crew equipment setups, and monthly sponsor analysis.
-              </p>
-            </div>
-            <div className="w-full lg:w-auto flex justify-start lg:justify-end">
-              <NewsletterSignup />
-            </div>
-          </div>
-
-          {/* Bottom Row: Main Footer Content */}
-          <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-8 text-center lg:text-left w-full">
-            
-            {/* Logo / Brand Name */}
-            <div className="flex flex-col gap-2">
-              <a
-                href="#"
-                className="font-fraunces font-extrabold text-md md:text-lg uppercase tracking-tight flex justify-center lg:justify-start items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-1"
-                aria-label="The Unofficial Studios Home"
-              >
-                <span className="text-brand-bone">The</span>
-                <span className="text-brand-ember">Unofficial</span>
-                <span className="text-brand-bone">Studios</span>
-              </a>
-              <span className="font-inter text-xxs text-brand-bone-muted uppercase tracking-widest">
-                Indore, India — Cinematic Media Headquarters
-              </span>
-            </div>
-
-            {/* Footer Anchors navigation */}
-            <nav className="flex items-center gap-6 md:gap-8 flex-wrap justify-center" aria-label="Footer Navigation">
-              {footerLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="font-inter text-xs uppercase tracking-wider text-brand-bone-secondary hover:text-brand-ember transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
-
-            {/* Contact Details & Social Handles */}
-            <div className="flex flex-col items-center lg:items-end gap-2 w-full max-w-full lg:max-w-none px-4">
-              <a
-                href="mailto:work.unofficialhimanshu@gmail.com"
-                className="inline-flex items-center gap-2 font-inter font-bold text-[9px] xs:text-[10px] sm:text-xs text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere] w-full justify-center lg:justify-end"
-              >
-                <Mail size={14} className="text-brand-ember shrink-0" />
-                <span className="lowercase break-all [overflow-wrap:anywhere]">work.unofficialhimanshu@gmail.com</span>
-              </a>
-
-              {/* Social Icons Strip */}
-              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xxs font-mono uppercase tracking-widest text-brand-bone-secondary w-full justify-center sm:justify-end">
-                <a
-                  href="https://instagram.com/unofficialhimanshu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
-                  aria-label="Himanshu Soni Instagram"
-                >
-                  <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
-                  <span className="lowercase break-all [overflow-wrap:anywhere]">@unofficialhimanshu</span>
-                </a>
-                <span className="hidden sm:inline-block text-white/5">|</span>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
-                  aria-label="The Unofficial Studios Instagram"
-                >
-                  <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
-                  <span className="lowercase break-all [overflow-wrap:anywhere]">@the_unofficial_studios</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* Copyright strip */}
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-brand-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] xs:text-[10px] sm:text-xxs text-brand-bone-muted font-inter uppercase tracking-wide md:tracking-widest w-full text-center">
-          <span className="break-words [overflow-wrap:anywhere] max-w-full">&copy; {currentYear} The Unofficial Studios. All rights reserved.</span>
-          <span className="break-words [overflow-wrap:anywhere] max-w-full">Crafted in the "Ink & Bone / Ember" cinematic design system.</span>
-        </div>
-      </footer>
-
-      {/* Persistent Floating WhatsApp "Chat with us" Button (Ember Re-theming) */}
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 md:bottom-8 right-6 md:right-8 z-50 bg-brand-ember hover:bg-brand-ember-deep text-brand-ink p-3.5 md:p-4 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(226,73,46,0.3)] hover:shadow-[0_4px_30px_rgba(226,73,46,0.5)] transition-all duration-300 hover:scale-105 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink"
-        aria-label="Chat with us on WhatsApp"
-        style={{ minWidth: "48px", minHeight: "48px" }}
-      >
-        <MessageCircle size={20} className="fill-current text-brand-ink transition-transform duration-300 group-hover:rotate-6" />
+    <footer className="relative w-full bg-brand-ink border-t border-brand-border-hairline pt-16 pb-28 md:py-16 overflow-hidden z-20 font-inter">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col w-full gap-12">
         
-        {/* Hover Slide out label for Desktop only */}
-        <span className="max-w-0 overflow-hidden font-inter font-bold uppercase tracking-widest text-[9px] group-hover:max-w-[120px] group-hover:ml-2 transition-all duration-500 ease-out whitespace-nowrap hidden md:inline-block text-brand-ink">
-          Chat With Us
-        </span>
-      </a>
-    </>
+        {/* Top Row: Newsletter Signup */}
+        <div className="border-b border-brand-border-hairline pb-12 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 w-full">
+          <div className="max-w-md text-left">
+            <h3 className="font-fraunces font-extrabold text-lg md:text-xl uppercase tracking-wider text-brand-bone">
+              Newsletter Insights
+            </h3>
+            <p className="font-inter text-xs text-brand-bone-secondary leading-relaxed mt-1">
+              Receive unreleased creator algorithms, camera crew equipment setups, and monthly sponsor analysis.
+            </p>
+          </div>
+          <div className="w-full lg:w-auto flex justify-start lg:justify-end">
+            <NewsletterSignup />
+          </div>
+        </div>
+
+        {/* Bottom Row: Main Footer Content */}
+        <div className="flex flex-col lg:flex-row items-center lg:justify-between gap-8 text-center lg:text-left w-full">
+          
+          {/* Logo / Brand Name */}
+          <div className="flex flex-col gap-2">
+            <a
+              href="#"
+              className="font-fraunces font-extrabold text-md md:text-lg uppercase tracking-tight flex justify-center lg:justify-start items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ink px-1"
+              aria-label="The Unofficial Studios Home"
+            >
+              <span className="text-brand-bone">The</span>
+              <span className="text-brand-ember">Unofficial</span>
+              <span className="text-brand-bone">Studios</span>
+            </a>
+            <span className="font-inter text-xxs text-brand-bone-muted uppercase tracking-widest">
+              Indore, India — Cinematic Media Headquarters
+            </span>
+          </div>
+
+          {/* Footer Anchors navigation */}
+          <nav className="flex items-center gap-6 md:gap-8 flex-wrap justify-center" aria-label="Footer Navigation">
+            {footerLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="font-inter text-xs uppercase tracking-wider text-brand-bone-secondary hover:text-brand-ember transition-colors duration-300 font-semibold focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+
+          {/* Contact Details & Social Handles */}
+          <div className="flex flex-col items-center lg:items-end gap-2 w-full max-w-full lg:max-w-none px-4">
+            <a
+              href="mailto:work.unofficialhimanshu@gmail.com"
+              className="inline-flex items-center gap-2 font-inter font-bold text-[9px] xs:text-[10px] sm:text-xs text-brand-bone hover:text-brand-ember transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere] w-full justify-center lg:justify-end"
+            >
+              <Mail size={14} className="text-brand-ember shrink-0" />
+              <span className="lowercase break-all [overflow-wrap:anywhere]">work.unofficialhimanshu@gmail.com</span>
+            </a>
+
+            {/* Social Icons Strip */}
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xxs font-mono uppercase tracking-widest text-brand-bone-secondary w-full justify-center sm:justify-end">
+              <a
+                href="https://instagram.com/unofficialhimanshu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
+                aria-label="Himanshu Soni Instagram"
+              >
+                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
+                <span className="lowercase break-all [overflow-wrap:anywhere]">@unofficialhimanshu</span>
+              </a>
+              <span className="hidden sm:inline-block text-white/5">|</span>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-brand-bone transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-ember py-2.5 min-h-[44px] break-all [overflow-wrap:anywhere]"
+                aria-label="The Unofficial Studios Instagram"
+              >
+                <InstagramIcon className="w-3.5 h-3.5 text-brand-ember shrink-0" />
+                <span className="lowercase break-all [overflow-wrap:anywhere]">@the_unofficial_studios</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Copyright strip */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-brand-border-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-[9px] xs:text-[10px] sm:text-xxs text-brand-bone-muted font-inter uppercase tracking-wide md:tracking-widest w-full text-center">
+        <span className="break-words [overflow-wrap:anywhere] max-w-full">&copy; {currentYear} The Unofficial Studios. All rights reserved.</span>
+        <span className="break-words [overflow-wrap:anywhere] max-w-full">Crafted in the "Ink & Bone / Ember" cinematic design system.</span>
+      </div>
+    </footer>
   );
 }

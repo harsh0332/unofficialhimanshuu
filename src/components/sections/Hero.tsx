@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import Button from "../ui/Button";
 import HeroVideo from "../ui/HeroVideo";
+import { getWhatsAppLink } from "@/lib/whatsapp";
 
 // --- EDITABLE HERO CONSTANTS ---
 const HERO_H1 = "India's brand stories, told cinematically — from Indore.";
@@ -44,9 +45,7 @@ export default function Hero() {
   } as const;
 
   // WhatsApp click-to-chat link
-  const whatsappUrl =
-    process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-    "https://wa.me/918827736537?text=Hi%20The%20Unofficial%20Studios,%20I'd%20like%20to%20collaborate!";
+  const whatsappUrl = getWhatsAppLink("Hi, I'd like to discuss a project with The Unofficial Studios.");
 
   return (
     <section

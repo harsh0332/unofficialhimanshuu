@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Sparkles, Video, Users, Coins, ArrowRight, ArrowLeft, Send, CheckCircle2, AlertCircle, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitLeadForm } from "@/lib/webhook";
+import { getWhatsAppLink } from "@/lib/whatsapp";
 
 type Intent = "hire" | "guest" | "sponsor";
 
@@ -48,7 +49,6 @@ export default function InquiryRouter() {
 
   // WhatsApp helper to prefill chat based on intent and collected data
   const getWhatsAppUrl = () => {
-    const baseNumber = "918827736537";
     let text = "Hi The Unofficial Studios, I'd like to collaborate!";
     
     if (intent === "hire") {
@@ -62,7 +62,7 @@ export default function InquiryRouter() {
       text = `Hi The Unofficial Studios, I'd like to discuss sponsorship options${brandStr}!`;
     }
     
-    return `https://wa.me/${baseNumber}?text=${encodeURIComponent(text)}`;
+    return getWhatsAppLink(text);
   };
 
   // Validation routines per step
@@ -198,6 +198,15 @@ export default function InquiryRouter() {
                 <p className="font-inter text-xs text-brand-bone-secondary max-w-md leading-relaxed">
                   Thank you! Your request has been transmitted securely. The Unofficial crew will analyze your payload and reach out to you within 24 hours.
                 </p>
+                <a
+                  href={getWhatsAppLink(`Hi, I just submitted an inquiry to ${intent === "hire" ? "Hire the Studio" : intent === "guest" ? "Be a Guest" : intent === "sponsor" ? "Sponsor a Show" : "collaborate"} on the website and would like a faster response!`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 h-11 px-6 bg-brand-ember hover:bg-brand-ember-deep text-brand-ink font-inter font-bold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 shrink-0 cursor-pointer min-h-[44px]"
+                >
+                  <MessageSquare size={12} className="text-brand-ink" />
+                  <span>Faster Reply on WhatsApp</span>
+                </a>
                 <button
                   onClick={() => {
                     setStep(0);
@@ -216,7 +225,7 @@ export default function InquiryRouter() {
                     });
                     setStatus({ state: "idle" });
                   }}
-                  className="mt-8 h-11 px-6 bg-brand-ember hover:bg-brand-ember-deep text-brand-ink font-inter font-bold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center shrink-0 cursor-pointer min-h-[44px]"
+                  className="mt-3 h-11 px-6 border border-brand-border-hairline hover:border-brand-ember text-brand-bone hover:bg-brand-ember/5 font-inter font-bold text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center shrink-0 cursor-pointer min-h-[44px]"
                 >
                   Start New Inquiry
                 </button>

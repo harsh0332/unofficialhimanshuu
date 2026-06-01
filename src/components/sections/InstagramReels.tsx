@@ -32,7 +32,11 @@ export default function InstagramReels() {
   const [isMobile, setIsMobile] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
-  // Detect mobile viewport to optimize layout assets
+  // Centralized interaction state to control concurrency limit globally
+  const [interactionStates, setInteractionStates] = useState<Record<number, "hovering" | "intersecting" | "idle">>({});
+  const [playingIds, setPlayingIds] = useState<number[]>([]);
+
+  // Detect mobile viewport to optimize layout assets and adjust play limits
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -41,6 +45,32 @@ export default function InstagramReels() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Compute playing card IDs based on priorities (hovering first, then intersecting) and viewport limit (1 on mobile, 2 on desktop)
+  useEffect(() => {
+    const limit = isMobile ? 1 : 2;
+
+    const hovering = Object.keys(interactionStates)
+      .map(Number)
+      .filter((id) => interactionStates[id] === "hovering");
+
+    const intersecting = Object.keys(interactionStates)
+      .map(Number)
+      .filter((id) => interactionStates[id] === "intersecting" && !hovering.includes(id));
+
+    const combined = [...hovering, ...intersecting];
+    const activeList = combined.slice(0, limit);
+
+    setPlayingIds(activeList);
+  }, [interactionStates, isMobile]);
+
+  // Handle interaction updates from child ReelCard components
+  const handleInteractionStateChange = (id: number, state: "hovering" | "intersecting" | "idle") => {
+    setInteractionStates((prev) => ({
+      ...prev,
+      [id]: state,
+    }));
+  };
 
   // Exactly 3 Premium local Reels mapped to the /public directory preview files
   const featuredReels: Reel[] = [
@@ -54,7 +84,7 @@ export default function InstagramReels() {
       thumbnail: "/reel1-cover.jpg",
       videoUrl: "/reel1-preview.mp4",
       instagramUrl: "https://www.instagram.com/reel/DR7w6yRjpIQ/",
-      captionHint: "Click to watch actual Reel / Hover to watch traffic setup details",
+      captionHint: "Click to watch actual Reel / Autoplay on scroll (hover for desk detail)",
     },
     {
       id: 2,
@@ -66,7 +96,7 @@ export default function InstagramReels() {
       thumbnail: "/reel2-cover.jpg",
       videoUrl: "/reel2-preview.mp4",
       instagramUrl: "https://www.instagram.com/reel/DSLNzrhjjHE/",
-      captionHint: "Click to watch actual Reel / Hover to watch storytelling setups",
+      captionHint: "Click to watch actual Reel / Autoplay on scroll (hover for desk detail)",
     },
     {
       id: 3,
@@ -78,7 +108,7 @@ export default function InstagramReels() {
       thumbnail: "/reel3-cover.jpg",
       videoUrl: "/reel3-preview.mp4",
       instagramUrl: "https://www.instagram.com/reel/DYxZKusy5cM/",
-      captionHint: "Click to watch actual Reel / Hover to view milestone metrics",
+      captionHint: "Click to watch actual Reel / Autoplay on scroll (hover for desk detail)",
     },
   ];
 
@@ -95,7 +125,7 @@ export default function InstagramReels() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="flex flex-col gap-3 text-left">
             <span className="font-inter font-bold text-xs uppercase tracking-widest text-brand-ember flex items-center gap-2">
-              <InstagramIcon className="w-3.5 h-3.5 text-brand-ember animate-pulse animate-duration-3000" />
+              <InstagramIcon className="w-3.5 h-3.5 text-brand-ember animate-pulse" />
               // Short-Form Dominance
             </span>
             <h2 className="font-fraunces font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-brand-bone">
@@ -118,6 +148,8 @@ export default function InstagramReels() {
               reel={reel}
               shouldReduceMotion={shouldReduceMotion ?? false}
               isMobile={isMobile}
+              isPlaying={playingIds.includes(reel.id)}
+              onInteractionStateChange={handleInteractionStateChange}
             />
           ))}
         </div>
@@ -138,18 +170,20 @@ interface ReelCardProps {
   reel: Reel;
   shouldReduceMotion: boolean;
   isMobile: boolean;
+  isPlaying: boolean;
+  onInteractionStateChange: (id: number, state: "hovering" | "intersecting" | "idle") => void;
 }
 
-function ReelCard({ reel, shouldReduceMotion, isMobile }: ReelCardProps) {
+function ReelCard({ reel, shouldReduceMotion, isMobile, isPlaying, onInteractionStateChange }: ReelCardProps) {
   const [hasIntersected, setHasIntersected] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const isIntersecting60Ref = useRef(false);
 
-  // Lazy-load video: only mount the <video> DOM element when scrolled close
+  // Lazy-load video: only mount the <video> DOM element when scrolled close to viewport (250px boundary)
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || shouldReduceMotion || isMobile) return;
+    if (!container || shouldReduceMotion) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -157,54 +191,84 @@ function ReelCard({ reel, shouldReduceMotion, isMobile }: ReelCardProps) {
           setHasIntersected(true);
         }
       },
-      { threshold: 0.1, rootMargin: "250px" } // Preload 250px before entering viewport
+      { threshold: 0.05, rootMargin: "250px" } // Preload 250px before entering viewport
     );
 
     observer.observe(container);
     return () => {
       observer.unobserve(container);
     };
-  }, [shouldReduceMotion, isMobile]);
+  }, [shouldReduceMotion]);
 
-  // Autoplay on scroll observer
+  // Autoplay on scroll observer at 60% intersection threshold
   useEffect(() => {
-    if (!hasIntersected || shouldReduceMotion || isMobile) return;
-    const video = videoRef.current;
-    if (!video) return;
+    const container = containerRef.current;
+    if (!container || shouldReduceMotion) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        isIntersecting60Ref.current = entry.isIntersecting;
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
-          setIsPlaying(true);
+          onInteractionStateChange(reel.id, "intersecting");
         } else {
-          video.pause();
-          setIsPlaying(false);
+          onInteractionStateChange(reel.id, "idle");
         }
       },
-      { threshold: 0.25 } // Autoplay when 25% of card is visible
+      { threshold: 0.6 } // Autoplay when 60% of card is visible
     );
 
-    observer.observe(video);
+    observer.observe(container);
     return () => {
-      observer.unobserve(video);
+      observer.unobserve(container);
     };
-  }, [hasIntersected, shouldReduceMotion, isMobile]);
+  }, [reel.id, shouldReduceMotion, onInteractionStateChange]);
+
+  // React to parent isPlaying commands by triggering play/pause methods
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isPlaying) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+      // Reset playhead to starting index to prevent visual ghosting on subsequent play cycles
+      video.currentTime = 0;
+    }
+  }, [isPlaying]);
+
+  // Hover triggers for desktop viewport only
+  const handleMouseEnter = () => {
+    if (isMobile || shouldReduceMotion) return;
+    onInteractionStateChange(reel.id, "hovering");
+  };
+
+  const handleMouseLeave = () => {
+    if (isMobile || shouldReduceMotion) return;
+    // Check if the card is still 60% in view on leave
+    if (isIntersecting60Ref.current) {
+      onInteractionStateChange(reel.id, "intersecting");
+    } else {
+      onInteractionStateChange(reel.id, "idle");
+    }
+  };
 
   return (
     <article
       ref={containerRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       className="group relative bg-brand-surface border border-brand-border-hairline overflow-hidden flex flex-col h-full hover:border-brand-ember/40 transition-colors duration-500"
     >
-      {/* Image Cover Block / Hover MP4 Video */}
+      {/* Image Cover Block / Autoplay MP4 Video */}
       <a
         href={reel.instagramUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="relative block aspect-[9/16] w-full overflow-hidden bg-brand-card cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-ember"
       >
-        {shouldReduceMotion || isMobile ? (
-          // Static poster on motion-reduction or mobile viewports
+        {shouldReduceMotion ? (
+          // Static poster on motion-reduction viewports
           <Image
             src={reel.thumbnail}
             alt={reel.title}
@@ -232,17 +296,40 @@ function ReelCard({ reel, shouldReduceMotion, isMobile }: ReelCardProps) {
             </div>
           </div>
         ) : (
-          // Mounted video loop that autoplays silently on scroll intersection
-          <video
-            ref={videoRef}
-            src={reel.videoUrl}
-            poster={reel.thumbnail}
-            muted
-            playsInline
-            loop
-            preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-700 ease-in-out"
-          />
+          // Mounted video loop that autoplays silently
+          <>
+            {/* Poster shown when video is paused/buffering */}
+            <div
+              className="absolute inset-0 z-10 transition-opacity duration-500 pointer-events-none"
+              style={{ opacity: isPlaying ? 0 : 1 }}
+            >
+              <Image
+                src={reel.thumbnail}
+                alt={reel.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover opacity-80"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-brand-ink/20">
+                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-brand-ember/90 border border-brand-border-accent text-brand-ink">
+                  <Play size={18} className="text-brand-ink fill-current animate-pulse ml-0.5" />
+                </div>
+              </div>
+            </div>
+
+            <video
+              ref={videoRef}
+              src={reel.videoUrl}
+              poster={reel.thumbnail}
+              muted
+              playsInline
+              loop
+              preload="none"
+              className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-700 ease-in-out"
+              style={{ opacity: isPlaying ? 1 : 0 }}
+            />
+          </>
         )}
 
         {/* Dark Vignette and Hover Action Node */}

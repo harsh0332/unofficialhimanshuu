@@ -100,7 +100,7 @@ export default function WhatsAppAutomation() {
             {/* Mock Chat input */}
             <div className="border-t border-brand-border-hairline pt-4 flex gap-3">
               <div className="flex-1 bg-brand-ink border border-brand-border-hairline text-brand-bone-muted px-3 py-2 text-[10px] flex items-center justify-between">
-                <span>Coming Soon: Automating feeds in chat...</span>
+                <span>Type a message...</span>
                 <Send size={12} className="text-brand-bone-muted/40" />
               </div>
             </div>

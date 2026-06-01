@@ -48,16 +48,8 @@ const EventBooking = dynamic(() => import("@/components/sections/EventBooking"),
   loading: () => <SectionPlaceholder height="500px" />,
 });
 
-const PaymentGateway = dynamic(() => import("@/components/sections/PaymentGateway"), {
-  loading: () => <SectionPlaceholder height="400px" />,
-});
-
 const WhatsAppAutomation = dynamic(() => import("@/components/sections/WhatsAppAutomation"), {
   loading: () => <SectionPlaceholder height="450px" />,
-});
-
-const TeaserRoadmap = dynamic(() => import("@/components/sections/TeaserRoadmap"), {
-  loading: () => <SectionPlaceholder height="600px" />,
 });
 
 const Footer = dynamic(() => import("@/components/sections/Footer"), {
@@ -101,14 +93,8 @@ export default function Home() {
         {/* 9. Event Booking -> webhook type: "event-booking" */}
         <EventBooking />
 
-        {/* 10. Payment Gateway -> designed Coming Soon placeholder */}
-        <PaymentGateway />
-
-        {/* 11. WhatsApp Automation -> designed highlight & persist floating chat */}
+        {/* 10. WhatsApp Automation -> designed highlight & persist floating chat */}
         <WhatsAppAutomation />
-
-        {/* 12-16. Teaser Roadmap area + 14. Newsletter (functional) -> webhook type: "newsletter" */}
-        <TeaserRoadmap />
       </main>
 
       {/* 17. Stark Footer & Persistent WhatsApp Floating trigger */}
